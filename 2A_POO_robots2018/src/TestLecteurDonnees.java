@@ -1,12 +1,11 @@
-
 import io.LecteurDonnees;
 import donnees.Carte;
 import donnees.Case;
 import donnees.Incendie;
 import donnees.Robot;
 import donnees.Direction;
-import donnees.DonneesSimulation;
 import donnees.NatureTerrain;
+import donnees.DonneesSimulation;
 
 import java.io.FileNotFoundException;
 import java.util.zip.DataFormatException;
@@ -20,8 +19,9 @@ public class TestLecteurDonnees {
         }
 
         try {
-            LecteurDonnees.lire(args[0]);
-            // System.out.println(LecteurDonnees.retourne(args[0])[2]);
+            // LecteurDonnees.lire(args[0]);
+            System.out.println(LecteurDonnees.creeDonnees(args[0]).getIncendies()[0].getEauNecessaire());
+
         } catch (FileNotFoundException e) {
             System.out.println("fichier " + args[0] + " inconnu ou illisible");
         } catch (DataFormatException e) {

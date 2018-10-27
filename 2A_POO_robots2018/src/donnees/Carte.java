@@ -9,16 +9,18 @@ public class Carte{
   public Carte(int nbLignes, int nbColonnes){
     this.nbLignes = nbLignes;
     this.nbColonnes = nbColonnes;
+    this.tableauCases = new Case[nbLignes][nbColonnes];
   }
 
   public Carte(int nbLignes, int nbColonnes, int tailleCases){
     this.nbLignes = nbLignes;
     this.nbColonnes = nbColonnes;
     this.tailleCases = tailleCases;
+    this.tableauCases = new Case[nbLignes][nbColonnes];
   }
 
-  public void setCase(Case casette, int ligne, int colonne){
-    this.tableauCases[ligne][colonne] = casette;
+  public void setCase(Case cas, int lig, int col){
+    this.tableauCases[lig][col] = cas;
   }
 
   public int getNbLignes(){
@@ -37,6 +39,7 @@ public class Carte{
     if (lig <= this.nbLignes && col <= this.nbColonnes) {
       return this.tableauCases[lig][col];
     }
+    return this.tableauCases[lig][col];
   }
 
 
@@ -63,6 +66,8 @@ public class Carte{
         }
         else return 0;
     }
+    return 0;
+
   }
 
   public Case getVoisin(Case src, Direction dir){
@@ -78,10 +83,7 @@ public class Carte{
           return this.tableauCases[src.getLigne() + 1][src.getCollone()];
       }
     }
-    else{
-      System.out.println("Pas de voisin go niquer ta mere et verifier avant");
-      System.exit(0);
-    }
+    System.out.println("Pas de voisin go niquer ta mere et verifier avant");
+    return this.tableauCases[0][0];
   }
-
 }
