@@ -14,6 +14,7 @@ public class TestLecteurDonnees {
 
         try {
             LecteurDonnees.lire(args[0]);
+            // System.out.println(LecteurDonnees.retourne(args[0])[2]);
         } catch (FileNotFoundException e) {
             System.out.println("fichier " + args[0] + " inconnu ou illisible");
         } catch (DataFormatException e) {
@@ -22,4 +23,3 @@ public class TestLecteurDonnees {
     }
 
 }
-
