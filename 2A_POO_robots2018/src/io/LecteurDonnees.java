@@ -1,6 +1,5 @@
 package io;
 
-
 import java.io.*;
 import java.util.*;
 import java.util.zip.DataFormatException;
@@ -50,7 +49,7 @@ public class LecteurDonnees {
       throws FileNotFoundException, DataFormatException {
       LecteurDonnees lecteur = new LecteurDonnees(fichierDonnees);
       DonneesSimulation donnees = new DonneesSimulation();
-      donnes.incendies = creeIncendies();
+      donnees.incendies = creeIncendies();
       scanner.close();
     }
 

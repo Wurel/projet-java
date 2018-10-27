@@ -1,3 +1,5 @@
+package donnees;
+
 public class Incendie{
   private Case position;
   private int ligne;

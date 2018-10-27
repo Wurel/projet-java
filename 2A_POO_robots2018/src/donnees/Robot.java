@@ -1,3 +1,5 @@
+package donnees;
+
 public abstract class Robot{
   private Case position;
   private int ligne;
@@ -21,7 +23,7 @@ public abstract class Robot{
     return this.vitesse;
   }
 
-  public abstract deverserEau(Case position);
+  public abstract void deverserEau(Case position);
 
-  public abstract remplirReservoir(Case position);
+  public abstract void remplirReservoir(Case position);
 }

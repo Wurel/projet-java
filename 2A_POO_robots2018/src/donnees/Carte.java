@@ -1,3 +1,5 @@
+package donnees;
+
 public class Carte{
   private int tailleCases;
   private int nbLignes;
@@ -15,8 +17,8 @@ public class Carte{
     this.tailleCases = tailleCases;
   }
 
-  public void setCase(Case case, int ligne, int colonne){
-    this.tableauCases[ligne][colonne] = case;
+  public void setCase(Case casette, int ligne, int colonne){
+    this.tableauCases[ligne][colonne] = casette;
   }
 
   public int getNbLignes(){
@@ -31,52 +33,54 @@ public class Carte{
     return this.tailleCases;
   }
 
-  public Case getCase(int ligne, int colonne){
-    if (ligne =< this.nbLignes && colonne =< this.nbColonnes) {
-      return this.tableauCases[ligne][colonne];
+  public Case getCase(int lig, int col){
+    if (lig <= this.nbLignes && col <= this.nbColonnes) {
+      return this.tableauCases[lig][col];
     }
   }
 
 
-  public Boolean voisinExiste(Case src, Direction dir){
+  public int voisinExiste(Case src, Direction dir){
     switch (dir) {
       case EST:
         if (src.getCollone() < this.nbColonnes) {
-          return TRUE;
+          return 1;
         }
-        else return FALSE;
+        else return 0;
       case OUEST:
         if (0 < src.getCollone()) {
-          return TRUE;
+          return 1;
         }
-        else return FALSE;
+        else return 0;
       case NORD:
         if (0 < src.getLigne()) {
-          return TRUE;
+          return 1;
         }
-        else return FALSE;
+        else return 0;
       case SUD:
         if (src.getLigne() < this.nbLignes) {
-          return TRUE;
+          return 1;
         }
-        else return FALSE;
+        else return 0;
     }
   }
 
   public Case getVoisin(Case src, Direction dir){
-    if (voisinExiste(src, dir)) {
+    if (voisinExiste(src, dir) == 1) {
       switch (dir) {
         case EST:
+        return this.tableauCases[src.getLigne()][src.getCollone() + 1];
         case OUEST:
-          return this.tableauCases[src.getLigne()][src.getCollone() + dir];
+        return this.tableauCases[src.getLigne()][src.getCollone() - 1];
         case NORD:
+        return this.tableauCases[src.getLigne() - 1][src.getCollone()];
         case SUD:
-          return this.tableauCases[src.getLigne() + dir][src.getCollone()];
+          return this.tableauCases[src.getLigne() + 1][src.getCollone()];
       }
     }
     else{
-      System.println("Pas de voisin go niquer ta mere et verifier avant")
-      return NULL
+      System.out.println("Pas de voisin go niquer ta mere et verifier avant");
+      System.exit(0);
     }
   }
 

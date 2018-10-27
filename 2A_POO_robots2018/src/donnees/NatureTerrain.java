@@ -1,3 +1,5 @@
+package donnees;
+
 public enum NatureTerrain{
   EAU,
   FORET,

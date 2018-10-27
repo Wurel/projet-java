@@ -1,5 +1,12 @@
 
 import io.LecteurDonnees;
+import donnees.Carte;
+import donnees.Case;
+import donnees.Incendie;
+import donnees.Robot;
+import donnees.Direction;
+import donnees.DonneesSimulation;
+import donnees.NatureTerrain;
 
 import java.io.FileNotFoundException;
 import java.util.zip.DataFormatException;
