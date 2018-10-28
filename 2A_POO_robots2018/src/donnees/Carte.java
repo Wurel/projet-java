@@ -86,4 +86,15 @@ public class Carte{
     System.out.println("Pas de voisin go niquer ta mere et verifier avant");
     return this.tableauCases[0][0];
   }
+
+  @Override
+  public String toString(){
+    String strCarte = "Carte : \n"  ;
+    for (int i = 0; i < this.nbLignes; i++) {
+      for (int j = 0; j < this.nbColonnes; j++) {
+        strCarte += tableauCases[i][j].toString() + "\n";
+      }
+    }
+    return strCarte;
+  }
 }

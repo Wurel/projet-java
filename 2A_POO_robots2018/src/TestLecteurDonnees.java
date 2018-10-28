@@ -19,8 +19,11 @@ public class TestLecteurDonnees {
         }
 
         try {
-            // LecteurDonnees.lire(args[0]);
-            System.out.println(LecteurDonnees.creeDonnees(args[0]).getIncendies()[0].getEauNecessaire());
+          // LecteurDonnees.lire(args[0]);
+          DonneesSimulation donnees = new DonneesSimulation();
+          donnees = LecteurDonnees.creeDonnees(args[0]);
+            // System.out.println(LecteurDonnees.creeDonnees(args[0]).getIncendies()[0].getEauNecessaire());
+          System.out.println(donnees);
 
         } catch (FileNotFoundException e) {
             System.out.println("fichier " + args[0] + " inconnu ou illisible");

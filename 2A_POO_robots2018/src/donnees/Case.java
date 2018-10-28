@@ -22,4 +22,9 @@ public class Case{
   public NatureTerrain getNature(){
     return this.nature;
   }
+
+  @Override
+  public String toString(){
+    return "Case : [" + this.ligne + ", " + this.colonne + "]" + " " + this.nature;
+  }
 }

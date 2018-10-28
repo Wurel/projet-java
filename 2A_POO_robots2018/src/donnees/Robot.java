@@ -5,6 +5,7 @@ public abstract class Robot{
   private int ligne;
   private int colonne;
   private double vitesse;
+  private double reservoirEau;
 
   public Robot(int ligne, int colonne){
     this.ligne = ligne;

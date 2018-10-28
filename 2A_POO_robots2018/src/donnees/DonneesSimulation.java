@@ -22,13 +22,15 @@ public class DonneesSimulation{
     return this.incendies;
   }
 
-  // private Case creeCases(String cases){
-  //
-  // }
-  //
-  // private Incendie creeIncendies(String incendies){
-  //
-  // }
-
+  @Override
+  public String toString(){
+    String strDonnees = new String();
+    strDonnees += carte.toString();
+    strDonnees += "Incendies : \n";
+    for (Incendie incend : incendies) {
+      strDonnees += incend.toString();
+    }
+    return strDonnees;
+  }
 
 }
