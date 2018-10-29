@@ -112,18 +112,39 @@ class Jeu implements Simulable{
 
     int compteur = 0;
     for (Incendie incend : this.donnees.getIncendies() ) {
-      gui.addGraphicalElement(new Rectangle(60+incend.getCollone()*this.nombrePixels,
+      gui.addGraphicalElement(new Rectangle(60+incend.getColonne()*this.nombrePixels,
        40+incend.getLigne()*this.nombrePixels,
         Color.decode("#FE1B00"),
         Color.decode("#FE1B00"),
          this.nombrePixels/2));
-      gui.addGraphicalElement(new Text(60+incend.getCollone()*this.nombrePixels,
+      gui.addGraphicalElement(new Text(60+incend.getColonne()*this.nombrePixels,
        40+incend.getLigne()*this.nombrePixels, Color.decode("#A89874"),
        new Integer(incend.getEauNecessaire()).toString()));
        gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+200,
        compteur*20 + 40,
         Color.decode("#FFFFFF"),
         incend.toString()));
+      compteur ++;
+
+    }
+
+    int compteur = 0;
+    for (Robot robot : this.donnees.getRobots() ) {
+      gui.addGraphicalElement(new Rectangle(60+robot.getColonne()*this.nombrePixels,
+       40+robot.getLigne()*this.nombrePixels,
+        Color.decode("#A22C29"),
+        Color.decode("#A22C29"),
+         this.nombrePixels/2));
+      gui.addGraphicalElement(new Text(60+robot.getColonne()*this.nombrePixels,
+       40+robot.getLigne()*this.nombrePixels, Color.decode("#A89874"),
+       new Integer(robot.getType()).toString()));
+     gui.addGraphicalElement(new Text(60+robot.getColonne()*this.nombrePixels,
+      40+robot.getLigne()*this.nombrePixels, Color.decode("#A89874"),
+      new Integer(robot.getVitesse()).toString()));
+      gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+200,
+       compteur*20 + 40,
+        Color.decode("#FFFFFF"),
+        robot.toString()));
       compteur ++;
 
     }

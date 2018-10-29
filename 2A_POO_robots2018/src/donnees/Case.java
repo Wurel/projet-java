@@ -15,7 +15,7 @@ public class Case{
     return this.ligne;
   }
 
-  public int getCollone(){
+  public int getColonne(){
     return this.colonne;
   }
 
@@ -39,6 +39,18 @@ public class Case{
     return "";
   }
 
+  public boolean equals(Case otherCase){
+    if (this.ligne != otherCase.getLigne()){
+      return false;
+    }
+    else if (this.colonne != otherCase.getColonne()){
+      return false;
+    }
+    else if (this.nature != otherCase.getNature()){
+      return false;
+    }
+    return true;
+  }
 
   @Override
   public String toString(){

@@ -22,6 +22,14 @@ public class DonneesSimulation{
     return this.incendies;
   }
 
+  public void setRobots(Robot[] robot){
+    this.robots = robot;
+  }
+
+  public Robot[] getRobots(){
+    return this.robots;
+  }
+
   @Override
   public String toString(){
     String strDonnees = new String();
@@ -29,6 +37,10 @@ public class DonneesSimulation{
     strDonnees += "Incendies : \n";
     for (Incendie incend : incendies) {
       strDonnees += incend.toString();
+    }
+    strDonnees += "Robots : \n";
+    for (Robot robot : robots) {
+      strDonnees += robot.toString();
     }
     return strDonnees;
   }

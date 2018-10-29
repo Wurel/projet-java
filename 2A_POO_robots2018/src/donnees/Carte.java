@@ -46,12 +46,12 @@ public class Carte{
   public int voisinExiste(Case src, Direction dir){
     switch (dir) {
       case EST:
-        if (src.getCollone() < this.nbColonnes) {
+        if (src.getColonne() < this.nbColonnes) {
           return 1;
         }
         else return 0;
       case OUEST:
-        if (0 < src.getCollone()) {
+        if (0 < src.getColonne()) {
           return 1;
         }
         else return 0;
@@ -74,13 +74,13 @@ public class Carte{
     if (voisinExiste(src, dir) == 1) {
       switch (dir) {
         case EST:
-        return this.tableauCases[src.getLigne()][src.getCollone() + 1];
+        return this.tableauCases[src.getLigne()][src.getColonne() + 1];
         case OUEST:
-        return this.tableauCases[src.getLigne()][src.getCollone() - 1];
+        return this.tableauCases[src.getLigne()][src.getColonne() - 1];
         case NORD:
-        return this.tableauCases[src.getLigne() - 1][src.getCollone()];
+        return this.tableauCases[src.getLigne() - 1][src.getColonne()];
         case SUD:
-          return this.tableauCases[src.getLigne() + 1][src.getCollone()];
+          return this.tableauCases[src.getLigne() + 1][src.getColonne()];
       }
     }
     System.out.println("Pas de voisin go niquer ta mere et verifier avant");

@@ -3,6 +3,10 @@ import donnees.Carte;
 import donnees.Case;
 import donnees.Incendie;
 import donnees.Robot;
+import donnees.RobotDrone;
+import donnees.RobotARoues;
+import donnees.RobotAChenilles;
+import donnees.RobotAPattes;
 import donnees.Direction;
 import donnees.NatureTerrain;
 import donnees.DonneesSimulation;
@@ -289,22 +293,22 @@ public class LecteurDonnees {
         }
     }
 
-    // public Robot[] creeRobots() throws DataFormatException {
-    //     ignorerCommentaires();
-    //     try {
-    //         int nbRobots = scanner.nextInt();
-    //         Robot robots[];
-    //
-    //         for (int i = 0; i < nbRobots; i++) {
-    //             robots[i] = creeRobot(i);
-    //         }
-    //         return robots;
-    //
-    //     } catch (NoSuchElementException e) {
-    //         throw new DataFormatException("Format invalide. "
-    //                 + "Attendu: nbRobots");
-    //     }
-    // }
+    public Robot[] creeRobots() throws DataFormatException {
+        ignorerCommentaires();
+        try {
+            int nbRobots = scanner.nextInt();
+            Robot robots[] = new Robot[nbRobots];
+
+            for (int i = 0; i < nbRobots; i++) {
+                robots[i] = creeRobot(i);
+            }
+            return robots;
+
+        } catch (NoSuchElementException e) {
+            throw new DataFormatException("Format invalide. "
+                    + "Attendu: nbRobots");
+        }
+    }
 
 
     /**
@@ -345,41 +349,55 @@ public class LecteurDonnees {
         }
     }
 
-    // private Robot creeRobot(int i) throws DataFormatException {
-    //     ignorerCommentaires();
-    //
-    //     try {
-    //         int lig = scanner.nextInt();
-    //         int col = scanner.nextInt();
-    //         // Robot robot = new Robot(lig, col);
-    //         // System.out.print("position = (" + lig + "," + col + ");");
-    //         String type = scanner.next();
-    //
-    //         // System.out.print("\t type = " + type);
-    //         // robot += "," + type;
-    //
-    //         // lecture eventuelle d'une vitesse du robot (entier)
-    //         // System.out.print("; \t vitesse = ");
-    //         String s = scanner.findInLine("(\\d+)");	// 1 or more digit(s) ?
-    //         // pour lire un flottant:    ("(\\d+(\\.\\d+)?)");
-    //
-    //         if (s == null) {
-    //             // System.out.print("valeur par defaut");
-    //             // robot += "," + "defaut";
-    //         } else {
-    //             int vitesse = Integer.parseInt(s);
-    //             // robot += "," + vitesse;
-    //             // System.out.print(vitesse);
-    //         }
-    //         verifieLigneTerminee();
-    //
-    //         return robot;
-    //
-    //     } catch (NoSuchElementException e) {
-    //         throw new DataFormatException("format de robot invalide. "
-    //                 + "Attendu: ligne colonne type [valeur_specifique]");
-    //     }
-    // }
+    private Robot creeRobot(int i) throws DataFormatException {
+        ignorerCommentaires();
+
+        try {
+            int lig = scanner.nextInt();
+            int col = scanner.nextInt();
+            // Robot robot = new Robot(lig, col);
+            // System.out.print("position = (" + lig + "," + col + ");");
+            String type = scanner.next();
+
+            // System.out.print("\t type = " + type);
+            // robot += "," + type;
+
+            // lecture eventuelle d'une vitesse du robot (entier)
+            // System.out.print("; \t vitesse = ");
+            String s = scanner.findInLine("(\\d+)");	// 1 or more digit(s) ?
+            // pour lire un flottant:    ("(\\d+(\\.\\d+)?)");
+
+            verifieLigneTerminee();
+
+            if (type == "DRONE"){
+              if (s == null) {
+                  return new RobotDrone(lig, col);
+              } else {
+                  double vitesse = Double.parseDouble(s);
+                  return new RobotDrone(lig, col, vitesse);
+              }
+            } else if (type == "ROUES"){
+              if (s == null) {
+                  return new RobotARoues(lig, col);
+              } else {
+                  double vitesse = Double.parseDouble(s);
+                  return new RobotARoues(lig, col, vitesse);
+              }
+            } else if (type == "CHENILLES"){
+              if (s == null) {
+                  return new RobotAChenilles(lig, col);
+              } else {
+                  double vitesse = Double.parseDouble(s);
+                  return new RobotAChenilles(lig, col, vitesse);
+              }
+            }
+            return new RobotAPattes(lig, col);
+
+        } catch (NoSuchElementException e) {
+            throw new DataFormatException("format de robot invalide. "
+                    + "Attendu: ligne colonne type [valeur_specifique]");
+        }
+    }
 
 
 
