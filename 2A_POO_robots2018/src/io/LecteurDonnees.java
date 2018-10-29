@@ -360,39 +360,41 @@ public class LecteurDonnees {
             // System.out.print("position = (" + lig + "," + col + ");");
             String type = scanner.next();
 
-            // System.out.print("\t type = " + type);
+            // System.out.print(type);
             // robot += "," + type;
 
             // lecture eventuelle d'une vitesse du robot (entier)
             // System.out.print("; \t vitesse = ");
             String s = scanner.findInLine("(\\d+)");	// 1 or more digit(s) ?
             // pour lire un flottant:    ("(\\d+(\\.\\d+)?)");
-
+            // System.out.print(type.equals("DRONE"));
             verifieLigneTerminee();
 
-            if (type == "DRONE"){
+            if (type.equals("DRONE")){
               if (s == null) {
                   return new RobotDrone(carte, lig, col);
               } else {
                   double vitesse = Double.parseDouble(s);
                   return new RobotDrone(carte, lig, col, vitesse);
               }
-            } else if (type == "ROUES"){
+            } else if (type.equals("ROUES")){
               if (s == null) {
                   return new RobotARoues(carte, lig, col);
               } else {
                   double vitesse = Double.parseDouble(s);
                   return new RobotARoues(carte, lig, col, vitesse);
               }
-            } else if (type == "CHENILLES"){
+            } else if (type.equals("CHENILLES")){
               if (s == null) {
                   return new RobotAChenilles(carte, lig, col);
               } else {
                   double vitesse = Double.parseDouble(s);
                   return new RobotAChenilles(carte, lig, col, vitesse);
               }
+            } else {
+              return new RobotAPattes(carte, lig, col);
             }
-            return new RobotAPattes(carte, lig, col);
+
 
         } catch (NoSuchElementException e) {
             throw new DataFormatException("format de robot invalide. "
