@@ -47,8 +47,8 @@ class Jeu implements Simulable{
 
     this.donnees = new DonneesSimulation();
     this.donnees = LecteurDonnees.creeDonnees(fichier);
-    this.gui = new GUISimulator( this.donnees.getCarte().getNbLignes()*this.nombrePixels,
-    this.donnees.getCarte().getNbColonnes()*this.nombrePixels, Color.BLACK);
+    this.gui = new GUISimulator( this.donnees.getCarte().getNbLignes()*this.nombrePixels+60 + 800,
+    this.donnees.getCarte().getNbColonnes()*this.nombrePixels+40, Color.BLACK);
     gui.setSimulable(this);				// association a la gui!
 
 
@@ -87,7 +87,7 @@ class Jeu implements Simulable{
 
     for (int i = 0; i < this.donnees.getCarte().getNbLignes(); i++) {
       for (int j = 0; j < this.donnees.getCarte().getNbColonnes(); j++) {
-        gui.addGraphicalElement(new Rectangle(j*this.nombrePixels, i*this.nombrePixels,
+        gui.addGraphicalElement(new Rectangle(60+j*this.nombrePixels, 40+i*this.nombrePixels,
           Color.decode(this.donnees.getCarte().getCase(i,j).getCouleur()),
           Color.decode(this.donnees.getCarte().getCase(i,j).getCouleur()),
            this.nombrePixels));
@@ -95,9 +95,9 @@ class Jeu implements Simulable{
 
         // switch (this.donnees.getCarte().getCase(i,j).getNature()) {
         //   case EAU:
-        //     gui.addGraphicalElement(new ImageElement(j*this.nombrePixels, i*this.nombrePixels, "image.Eau.png", obs));
+        //     gui.addGraphicalElement(new ImageElement(j*this.nombrePixels, i*this.nombrePixels, "image.Eau.png", -1, -1, obs));
         //   case FORET:
-        //     gui.addGraphicalElement(new ImageElement(j*this.nombrePixels, i*this.nombrePixels, "image.Foret.png", "eog"));
+        //     gui.addGraphicalElement(new ImageElement(j*this.nombrePixels, i*this.nombrePixels, "image.Foret.png", "eog") );
         //   case ROCHE:
         //     gui.addGraphicalElement(new ImageElement(j*this.nombrePixels, i*this.nombrePixels, "image.Roche.png", "eog"));
         //   case TERRAIN_LIBRE:
@@ -110,12 +110,22 @@ class Jeu implements Simulable{
 
     }
 
+    int compteur = 0;
     for (Incendie incend : this.donnees.getIncendies() ) {
-      gui.addGraphicalElement(new Rectangle(incend.getCollone()*this.nombrePixels,
-       incend.getLigne()*this.nombrePixels,
+      gui.addGraphicalElement(new Rectangle(60+incend.getCollone()*this.nombrePixels,
+       40+incend.getLigne()*this.nombrePixels,
         Color.decode("#FE1B00"),
         Color.decode("#FE1B00"),
          this.nombrePixels/2));
+      gui.addGraphicalElement(new Text(60+incend.getCollone()*this.nombrePixels,
+       40+incend.getLigne()*this.nombrePixels, Color.decode("#A89874"),
+       new Integer(incend.getEauNecessaire()).toString()));
+       gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+200,
+       compteur*20 + 40,
+        Color.decode("#FFFFFF"),
+        incend.toString()));
+      compteur ++;
+
     }
 
 
