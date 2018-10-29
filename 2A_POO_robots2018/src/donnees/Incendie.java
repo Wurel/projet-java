@@ -33,8 +33,16 @@ public class Incendie{
     this.eauNecessaire = eauNecessaire;
   }
 
+  public int getLigne(){
+    return this.ligne;
+  }
+
+  public int getCollone(){
+    return this.colonne;
+  }
+
   @Override
   public String toString(){
-    return "Incendie : [" + this.ligne + ", " + this.colonne + "]" + " eau necessaire : " + this.eauNecessaire + "\n"; 
+    return "Incendie : [" + this.ligne + ", " + this.colonne + "]" + " eau necessaire : " + this.eauNecessaire + "\n";
   }
 }

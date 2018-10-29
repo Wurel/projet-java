@@ -23,6 +23,23 @@ public class Case{
     return this.nature;
   }
 
+  public String getCouleur(){
+    switch (this.nature) {
+      case EAU:
+        return "#318CE7";
+      case FORET:
+        return "#386F48";
+      case ROCHE:
+        return "#798081";
+      case TERRAIN_LIBRE:
+        return "#F88E55";
+      case HABITAT:
+        return "#6C0277";
+    }
+    return "";
+  }
+
+
   @Override
   public String toString(){
     return "Case : [" + this.ligne + ", " + this.colonne + "]" + " " + this.nature;
