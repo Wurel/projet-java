@@ -7,6 +7,7 @@ public class RobotAPattes extends Robot {
     this.setVitesse(30);
   }
 
+  @Override
   public String getType(){
     return "Pattes";
   }
@@ -20,6 +21,7 @@ public class RobotAPattes extends Robot {
     }
   }
 
+  @Override
   public boolean peutSeDeplacer(Case nvCase){
     switch(nvCase.getNature()){
       case EAU :

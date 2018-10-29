@@ -43,6 +43,8 @@ public abstract class Robot{
 
   public abstract  String getType();
 
+  public abstract boolean peutSeDeplacer(Case nvCase);
+
   @Override
   public abstract String toString();
 }

@@ -12,6 +12,7 @@ public class RobotARoues extends Robot {
     this.setVitesse(vitesse);
   }
 
+  @Override
   public String getType(){
     return "Roues";
   }
@@ -21,6 +22,7 @@ public class RobotARoues extends Robot {
     return super.getVitesse(naturePosition);
   }
 
+  @Override
   public boolean peutSeDeplacer(Case nvCase){
     switch(nvCase.getNature()){
       case EAU :

@@ -15,8 +15,15 @@ public class RobotDrone extends Robot {
     this.setVitesse(vitesse);
   }
 
+  @Override
   public String getType(){
     return "Drone";
+  }
+
+
+  @Override
+  public boolean peutSeDeplacer(Case nvCase){
+    return true;
   }
 
   @Override

@@ -15,6 +15,7 @@ public class RobotAChenilles extends Robot {
     this.setVitesse(vitesse);
   }
 
+  @Override
   public String getType(){
     return "Chenilles";
   }
@@ -28,6 +29,7 @@ public class RobotAChenilles extends Robot {
     }
   }
 
+  @Override
   public boolean peutSeDeplacer(Case nvCase){
     switch(nvCase.getNature()){
       case EAU :
