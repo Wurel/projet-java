@@ -2,13 +2,13 @@ package donnees;
 
 public class RobotARoues extends Robot {
 
-  public RobotARoues(int ligne, int colonne){
-    super(ligne, colonne);
+  public RobotARoues(Carte carte, int ligne, int colonne){
+    super(carte, ligne, colonne);
     this.setVitesse(80);
   }
 
-  public RobotARoues(int ligne, int colonne, double vitesse){
-    super(ligne, colonne);
+  public RobotARoues(Carte carte, int ligne, int colonne, double vitesse){
+    super(carte, ligne, colonne);
     this.setVitesse(vitesse);
   }
 
@@ -27,7 +27,6 @@ public class RobotARoues extends Robot {
       case FORET :
       case ROCHE:
         return false;
-        break;
       default :
         return true;
     }

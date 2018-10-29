@@ -63,6 +63,7 @@ public class LecteurDonnees {
       DonneesSimulation donnees = new DonneesSimulation();
       donnees.setCarte(creeCarte());
       donnees.setIncendies(creeIncendies());
+      donnees.setRobots(creeRobots(donnees.getCarte()));
       scanner.close();
       return donnees;
     }
@@ -293,14 +294,14 @@ public class LecteurDonnees {
         }
     }
 
-    public Robot[] creeRobots() throws DataFormatException {
+    public static Robot[] creeRobots(Carte carte) throws DataFormatException {
         ignorerCommentaires();
         try {
             int nbRobots = scanner.nextInt();
             Robot robots[] = new Robot[nbRobots];
 
             for (int i = 0; i < nbRobots; i++) {
-                robots[i] = creeRobot(i);
+                robots[i] = creeRobot(i, carte);
             }
             return robots;
 
@@ -349,7 +350,7 @@ public class LecteurDonnees {
         }
     }
 
-    private Robot creeRobot(int i) throws DataFormatException {
+    private static Robot creeRobot(int i, Carte carte) throws DataFormatException {
         ignorerCommentaires();
 
         try {
@@ -371,27 +372,27 @@ public class LecteurDonnees {
 
             if (type == "DRONE"){
               if (s == null) {
-                  return new RobotDrone(lig, col);
+                  return new RobotDrone(carte, lig, col);
               } else {
                   double vitesse = Double.parseDouble(s);
-                  return new RobotDrone(lig, col, vitesse);
+                  return new RobotDrone(carte, lig, col, vitesse);
               }
             } else if (type == "ROUES"){
               if (s == null) {
-                  return new RobotARoues(lig, col);
+                  return new RobotARoues(carte, lig, col);
               } else {
                   double vitesse = Double.parseDouble(s);
-                  return new RobotARoues(lig, col, vitesse);
+                  return new RobotARoues(carte, lig, col, vitesse);
               }
             } else if (type == "CHENILLES"){
               if (s == null) {
-                  return new RobotAChenilles(lig, col);
+                  return new RobotAChenilles(carte, lig, col);
               } else {
                   double vitesse = Double.parseDouble(s);
-                  return new RobotAChenilles(lig, col, vitesse);
+                  return new RobotAChenilles(carte, lig, col, vitesse);
               }
             }
-            return new RobotAPattes(lig, col);
+            return new RobotAPattes(carte, lig, col);
 
         } catch (NoSuchElementException e) {
             throw new DataFormatException("format de robot invalide. "

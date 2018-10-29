@@ -2,13 +2,13 @@ package donnees;
 
 public class RobotDrone extends Robot {
 
-  public RobotDrone(int ligne, int colonne){
-    super(ligne, colonne);
+  public RobotDrone(Carte carte, int ligne, int colonne){
+    super(carte, ligne, colonne);
     this.setVitesse(100);
   }
 
-  public RobotDrone(int ligne, int colonne, double vitesse){
-    super(ligne, colonne);
+  public RobotDrone(Carte carte, int ligne, int colonne, double vitesse){
+    super(carte, ligne, colonne);
     if (vitesse > 150){
       throw new IllegalArgumentException("La vitesse d'un robot à chenilles ne peut excéder 150 km/h.");
     }

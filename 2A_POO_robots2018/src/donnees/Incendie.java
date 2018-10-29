@@ -37,7 +37,7 @@ public class Incendie{
     return this.ligne;
   }
 
-  public int getCollone(){
+  public int getColonne(){
     return this.colonne;
   }
 

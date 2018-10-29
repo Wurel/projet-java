@@ -2,13 +2,13 @@ package donnees;
 
 public class RobotAChenilles extends Robot {
 
-  public RobotAChenilles(int ligne, int colonne){
-    super(ligne, colonne);
+  public RobotAChenilles(Carte carte, int ligne, int colonne){
+    super(carte, ligne, colonne);
     this.setVitesse(60);
   }
 
-  public RobotAChenilles(int ligne, int colonne, double vitesse){
-    super(ligne, colonne);
+  public RobotAChenilles(Carte carte, int ligne, int colonne, double vitesse){
+    super(carte, ligne, colonne);
     if (vitesse > 80){
       throw new IllegalArgumentException("La vitesse d'un robot à chenilles ne peut excéder 80 km/h.");
     }
@@ -23,7 +23,6 @@ public class RobotAChenilles extends Robot {
     switch(naturePosition){
       case FORET :
         return super.getVitesse(naturePosition)/2;
-        break;
       default :
         return super.getVitesse(naturePosition);
     }
@@ -34,7 +33,6 @@ public class RobotAChenilles extends Robot {
       case EAU :
       case ROCHE:
         return false;
-        break;
       default :
         return true;
     }

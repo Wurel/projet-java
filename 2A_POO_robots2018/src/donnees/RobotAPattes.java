@@ -2,8 +2,8 @@ package donnees;
 
 public class RobotAPattes extends Robot {
 
-  public RobotAPattes(int ligne, int colonne){
-    super(ligne, colonne);
+  public RobotAPattes(Carte carte, int ligne, int colonne){
+    super(carte, ligne, colonne);
     this.setVitesse(30);
   }
 
@@ -15,7 +15,6 @@ public class RobotAPattes extends Robot {
     switch (naturePosition){
       case ROCHE :
         return super.getVitesse(naturePosition)/3;
-        break;
       default :
         return super.getVitesse(naturePosition);
     }
@@ -25,7 +24,6 @@ public class RobotAPattes extends Robot {
     switch(nvCase.getNature()){
       case EAU :
         return false;
-        break;
       default :
         return true;
     }

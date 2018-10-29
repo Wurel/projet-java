@@ -6,9 +6,9 @@ public abstract class Robot{
   private double vitesse;
   private int reservoirEau;
 
-  public Robot(int ligne, int colonne){
-    this.carte = donnees.getCarte();
-    this.position = donnees.getCarte().getCase(ligne, colonne);
+  public Robot(Carte carte, int ligne, int colonne){
+    this.carte = carte;
+    this.position = carte.getCase(ligne, colonne);
   }
 
   public Carte getCarte(){
@@ -21,7 +21,7 @@ public abstract class Robot{
 
   public abstract void setPosition(Case nvCase);
 
-  public double setVitesse(double vitesse){
+  public void setVitesse(double vitesse){
     this.vitesse = vitesse;
   }
 
@@ -29,7 +29,7 @@ public abstract class Robot{
     return this.vitesse;
   }
 
-  public int setReservoirEau(int reservoirEau){
+  public void setReservoirEau(int reservoirEau){
     this.reservoirEau = reservoirEau;
   }
 
@@ -40,6 +40,8 @@ public abstract class Robot{
   public abstract void deverserEau(int vol);
 
   public abstract void remplirReservoir();
+
+  public abstract  String getType();
 
   @Override
   public abstract String toString();
