@@ -35,7 +35,7 @@ public class RobotDrone extends Robot {
     boolean still = true;
     for ( Direction dir : Direction.values()){
       if (this.getCarte().getVoisin(this.getPosition(), dir).equals(nvCase)){
-        this.setPosition(nvCase);
+        super.setPosition(nvCase);
         still = false;
       }
     }

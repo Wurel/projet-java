@@ -1,13 +1,14 @@
 package simulation;
 import donnees.Robot;
 import donnees.NatureTerrain;
+import donnees.Carte;
 
 
-class EvenementRemplir extends Evenement{
+public class EvenementRemplir extends Evenement{
   Carte carte;
   Robot robot;
 
-  public EvenementDeplacement(int date, Carte carte, Robot robot){
+  public EvenementRemplir(int date, Carte carte, Robot robot){
     super(date);
     this.carte = carte;
     this.robot = robot;
@@ -15,7 +16,7 @@ class EvenementRemplir extends Evenement{
 
   @Override
   public void execute(){
-    this.robot.remplirReservoir()
+    this.robot.remplirReservoir();
    }
 
 }

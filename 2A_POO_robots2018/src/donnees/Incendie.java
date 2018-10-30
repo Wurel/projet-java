@@ -1,15 +1,18 @@
 package donnees;
 
 public class Incendie{
+  private Carte carte;
   private Case position;
   private int ligne;
   private int colonne;
   private int eauNecessaire;
 
-  public Incendie(int colonne, int ligne, int eauNecessaire){
+  public Incendie(Carte carte, int colonne, int ligne, int eauNecessaire){
     this.colonne = colonne;
     this.ligne = ligne;
     this.eauNecessaire = eauNecessaire;
+    this.carte = carte;
+    this.position = carte.getCase(ligne, colonne);
   }
 
   public Incendie(Case position, int eauNecessaire){

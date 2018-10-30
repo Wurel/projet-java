@@ -19,7 +19,9 @@ public abstract class Robot{
     return this.position;
   }
 
-  public abstract void setPosition(Case nvCase);
+  public void setPosition(Case nvCase){
+    this.position = nvCase;
+  }
 
   public void setVitesse(double vitesse){
     this.vitesse = vitesse;

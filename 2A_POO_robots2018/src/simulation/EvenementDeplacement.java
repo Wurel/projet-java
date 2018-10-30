@@ -4,7 +4,7 @@ import donnees.Carte;
 import donnees.Robot;
 import donnees.Direction;
 
-class EvenementDeplacement extends Evenement{
+public class EvenementDeplacement extends Evenement{
 
   Direction dir;
   Carte carte;
@@ -20,9 +20,11 @@ class EvenementDeplacement extends Evenement{
   @Override
   public void execute(){
     if (carte.voisinExiste(this.robot.getPosition(), this.dir) &&
-    this.robot.peutSeDeplacer()) {
-      this.robot.setPosition(carte.getVoisin(this.robot.getPosition, this.dir))
-
+    this.robot.peutSeDeplacer(carte.getVoisin(this.robot.getPosition(), this.dir))) {
+      this.robot.setPosition(carte.getVoisin(this.robot.getPosition(), this.dir));
+    }
+    else{
+      throw new IllegalArgumentException("Le robot ne peut pas se deplacer dans cette direction.");
     }
   }
 

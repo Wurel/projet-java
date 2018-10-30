@@ -43,35 +43,35 @@ public class Carte{
   }
 
 
-  public int voisinExiste(Case src, Direction dir){
+  public boolean voisinExiste(Case src, Direction dir){
     switch (dir) {
       case EST:
         if (src.getColonne() < this.nbColonnes) {
-          return 1;
+          return true;
         }
-        else return 0;
+        else return false;
       case OUEST:
         if (0 < src.getColonne()) {
-          return 1;
+          return true;
         }
-        else return 0;
+        else return false;
       case NORD:
         if (0 < src.getLigne()) {
-          return 1;
+          return true;
         }
-        else return 0;
+        else return false;
       case SUD:
         if (src.getLigne() < this.nbLignes) {
-          return 1;
+          return true;
         }
-        else return 0;
+        else return false;
     }
-    return 0;
+    return false;
 
   }
 
   public Case getVoisin(Case src, Direction dir){
-    if (voisinExiste(src, dir) == 1) {
+    if (voisinExiste(src, dir)) {
       switch (dir) {
         case EST:
         return this.tableauCases[src.getLigne()][src.getColonne() + 1];

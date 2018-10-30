@@ -1,19 +1,38 @@
 package simulation;
-
+import java.util.ArrayList;
 
 public class Simulateur{
-  private long dateSimualtion;
+  private long dateSimulation;
+  private ArrayList<Evenement> evenements;
 
   public void ajouteEvenement(Evenement e){
+    try {
+      this.evenements.add(e);
+    }catch (NullPointerException excep) {
+      evenements = new ArrayList();
+      this.evenements.add(e);
+    }
+  }
 
+  public ArrayList<Evenement> getEvenements(){
+    return this.evenements;
+  }
+
+  public long getDate(){
+    return this.dateSimulation;
   }
 
   public void incrementeDate(){
-
+    this.dateSimulation ++;
   }
 
-  public int simulationTerminee(){
-
+  public boolean simulationTerminee(){
+    for (Evenement event : this.evenements) {
+        if (event.getDate() >= this.getDate()) {
+          return false;
+        }
+    }
+    return true;
   }
 
 }

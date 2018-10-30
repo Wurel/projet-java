@@ -38,7 +38,7 @@ public class RobotAPattes extends Robot {
       if (this.getCarte().getVoisin(this.getPosition(), dir).equals(nvCase)){
         still = false;
         if (this.peutSeDeplacer(nvCase)){
-          this.setPosition(nvCase);
+          super.setPosition(nvCase);
           notAdapt = false;
         }
       }

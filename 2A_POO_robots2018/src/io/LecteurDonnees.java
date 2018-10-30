@@ -62,7 +62,7 @@ public class LecteurDonnees {
       LecteurDonnees lecteur = new LecteurDonnees(fichierDonnees);
       DonneesSimulation donnees = new DonneesSimulation();
       donnees.setCarte(creeCarte());
-      donnees.setIncendies(creeIncendies());
+      donnees.setIncendies(creeIncendies(donnees.getCarte()));
       donnees.setRobots(creeRobots(donnees.getCarte()));
       scanner.close();
       return donnees;
@@ -209,13 +209,13 @@ public class LecteurDonnees {
         }
     }
 
-    public static Incendie[] creeIncendies() throws DataFormatException {
+    public static Incendie[] creeIncendies(Carte carte) throws DataFormatException {
         ignorerCommentaires();
         try {
             int nbIncendies = scanner.nextInt();
             Incendie incendies[] = new Incendie[nbIncendies];
             for (int i = 0; i < nbIncendies; i++) {
-                incendies[i] = creeIncendie(i);
+                incendies[i] = creeIncendie(i, carte);
             }
             return incendies;
 
@@ -253,7 +253,7 @@ public class LecteurDonnees {
         }
     }
 
-    private static Incendie creeIncendie(int i) throws DataFormatException {
+    private static Incendie creeIncendie(int i, Carte carte) throws DataFormatException {
         ignorerCommentaires();
         // System.out.print("Incendie " + i + ": ");
 
@@ -268,7 +268,7 @@ public class LecteurDonnees {
             }
             verifieLigneTerminee();
 
-            return new Incendie(lig, col, intensite);
+            return new Incendie(carte ,lig, col, intensite);
 
         } catch (NoSuchElementException e) {
             throw new DataFormatException("format d'incendie invalide. "
