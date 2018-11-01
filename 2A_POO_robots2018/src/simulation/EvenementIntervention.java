@@ -13,7 +13,7 @@ public class EvenementIntervention extends Evenement {
   Incendie[] incendies;
 
 
-  public EvenementIntervention(int date, Incendie[] incendies, Robot robot){
+  public EvenementIntervention(long date, Incendie[] incendies, Robot robot){
     super(date);
     this.robot = robot;
     this.incendies = incendies;
@@ -25,13 +25,13 @@ public class EvenementIntervention extends Evenement {
       if (robot.getPosition().equals(incend.getPosition())) {
         System.out.println("il est sur la bonne case");
         if (robot.getReservoirEau() - incend.getEauNecessaire() >= 0) {
-          robot.setReservoirEau(robot.getReservoirEau() - incend.getEauNecessaire());
+          robot.deverserEau(incend.getEauNecessaire());
           incend.setEauNecessaire(0);
         }
         else {
           System.out.println(robot.getReservoirEau());
           incend.setEauNecessaire(incend.getEauNecessaire() - robot.getReservoirEau());
-          robot.setReservoirEau(0);
+          robot.deverserEau(robot.getReservoirEau());
         }
       }
 

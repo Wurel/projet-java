@@ -10,7 +10,7 @@ public class EvenementDeplacement extends Evenement{
   Carte carte;
   Robot robot;
 
-  public EvenementDeplacement(int date, Direction dir, Carte carte, Robot robot){
+  public EvenementDeplacement(long date, Direction dir, Carte carte, Robot robot){
     super(date);
     this.dir = dir;
     this.carte = carte;

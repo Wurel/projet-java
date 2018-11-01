@@ -39,33 +39,26 @@ public class TestTp{
       simul.ajouteEvenement(new EvenementDeplacement(1, Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
       simul.ajouteEvenement(new EvenementIntervention(2, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
       simul.ajouteEvenement(new EvenementDeplacement(3, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(3, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementRemplir(4, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(5, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(5, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementIntervention(6, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(7, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(4, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementRemplir(5, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(6, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(7, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementIntervention(8, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(9, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
 
-      simul.ajouteEvenement(new EvenementDeplacement(8, Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(9, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(9, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementRemplir(10, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(11, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(11, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementIntervention(12, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(13, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(10, Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(11, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(12, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementRemplir(13, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(14, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(15, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementIntervention(16, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(17, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
 
-      jeu.setEvIterator(simul);
-      // while(!simul.simulationTerminee()){
-      //   for (Evenement event : simul.getEvenements()) {
-      //     if (event.getDate() == simul.getDate()) {
-      //       event.execute();
-      //     }
-      //   }
-      //   simul.incrementeDate();
-      //   jeu.draw();
-      // }
-
+      jeu.setSimulateur(simul);
+      for ( Robot robot : jeu.getDonnees().getRobots()){
+        robot.setSimulateur(simul);
+      }
 
   }
 }
@@ -75,8 +68,9 @@ class Jeu implements Simulable{
   /** L'interface graphique associée */
   private GUISimulator gui;
   private DonneesSimulation donnees;
+  private String fichier;
   private int nombrePixels;
-  private Iterator<Evenement> evIterator;
+  private Simulateur simul;
 
   public Jeu(String fichier){
     this.nombrePixels = 50;
@@ -84,6 +78,7 @@ class Jeu implements Simulable{
 
     this.donnees = new DonneesSimulation();
     this.donnees = LecteurDonnees.creeDonnees(fichier);
+    this.fichier = fichier;
     this.gui = new GUISimulator( this.donnees.getCarte().getNbLignes()*this.nombrePixels+60 + 800,
     this.donnees.getCarte().getNbColonnes()*this.nombrePixels+40, Color.BLACK);
     gui.setSimulable(this);				// association a la gui!
@@ -106,27 +101,63 @@ class Jeu implements Simulable{
     return this.donnees;
   }
 
-  public void setEvIterator(Simulateur simul){
-    this.evIterator = simul.getEvenements().iterator();
+  public void setSimulateur(Simulateur simul){
+    this.simul = simul;
   }
 
   @Override
   public void next() {
-      if (this.evIterator.hasNext()){
-        this.evIterator.next().execute();
+      if (!this.simul.simulationTerminee()){
+        for (Evenement event : this.simul.getEvenements()) {
+          if (event.getDate() == this.simul.getDate()) {
+            event.execute();
+            draw();
+          }
+        }
+        this.simul.incrementeDate();
       }
-      draw();
   }
 
 
   @Override
   public void restart() {
-      // planCoordinates();
-      draw();
+    try {
+      this.donnees = new DonneesSimulation();
+      this.donnees = LecteurDonnees.creeDonnees(this.fichier);
+      Simulateur simul = new Simulateur();
+      simul.ajouteEvenement(new EvenementDeplacement(1, Direction.values()[0], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementIntervention(2, this.donnees.getIncendies(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(3, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(4, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementRemplir(5, this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(6, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(7, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementIntervention(8, this.donnees.getIncendies(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(9, Direction.values()[1], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+
+      simul.ajouteEvenement(new EvenementDeplacement(10, Direction.values()[0], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(11, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(12, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementRemplir(13, this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(14, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(15, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementIntervention(16, this.donnees.getIncendies(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(17, Direction.values()[1], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+
+      this.simul = simul;
+      for ( Robot robot : this.donnees.getRobots()){
+        robot.setSimulateur(this.simul);
+      }
+    } catch (FileNotFoundException e) {
+        System.out.println("fichier " + fichier + " inconnu ou illisible");
+    } catch (DataFormatException e) {
+        System.out.println("\n\t**format du fichier " + fichier + " invalide: " + e.getMessage());
+    }
+    draw();
   }
 
 
-  private void draw(){
+  void draw(){
     gui.reset();	// clear the window
 
     for (int i = 0; i < this.donnees.getCarte().getNbLignes(); i++) {
@@ -186,7 +217,7 @@ class Jeu implements Simulable{
        robot.getType()));
      gui.addGraphicalElement(new Text(60+robot.getPosition().getColonne()*this.nombrePixels,
       60+robot.getPosition().getLigne()*this.nombrePixels, Color.decode("#A89874"),
-      new Double(robot.getVitesse(robot.getPosition().getNature())).toString()));
+      new Integer(robot.getReservoirEau()).toString()));
       gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+240,
        compteur_robot*20 + 40,
         Color.decode("#FFFFFF"),

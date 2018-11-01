@@ -1,10 +1,12 @@
 package donnees;
+import simulation.*;
 
 public abstract class Robot{
   private Carte carte;
   private Case position;
   private double vitesse;
   private int reservoirEau;
+  private Simulateur simul;
 
   public Robot(Carte carte, int ligne, int colonne){
     this.carte = carte;
@@ -14,6 +16,15 @@ public abstract class Robot{
   public Carte getCarte(){
     return this.carte;
   }
+
+  public Simulateur getSimulateur(){
+    return this.simul;
+  }
+
+  public void setSimulateur(Simulateur simul){
+    this.simul = simul;
+  }
+
 
   public Case getPosition(){
     return this.position;

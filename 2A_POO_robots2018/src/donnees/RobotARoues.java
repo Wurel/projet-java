@@ -41,7 +41,10 @@ public class RobotARoues extends Robot {
       if (this.getCarte().getVoisin(this.getPosition(), dir).equals(nvCase)){
         still = false;
         if (this.peutSeDeplacer(nvCase)){
+          double vitesse = 0.5*this.getVitesse(this.getPosition().getNature());
           super.setPosition(nvCase);
+          vitesse += 0.5*this.getVitesse(this.getPosition().getNature());
+          //this.getSimulateur().augmenteDate(this.getCarte().getTailleCases()/(long)vitesse);
           notAdapt = false;
         }
       }
@@ -71,7 +74,9 @@ public class RobotARoues extends Robot {
   }
 
   public void deverserEau(int vol){
-    this.setReservoirEau(this.getReservoirEau() - vol); // 5 sec pour vider 100 litres
+    this.setReservoirEau(this.getReservoirEau() - vol);
+    //this.getSimulateur().augmenteDate(5*vol/100);
+    System.out.println("Durée : " + 5*vol/100 + "\n"); // 5 sec pour vider 100 litres
     // comment gère t'on le temps ?
   }
 

@@ -8,7 +8,7 @@ public class EvenementRemplir extends Evenement{
   Carte carte;
   Robot robot;
 
-  public EvenementRemplir(int date, Carte carte, Robot robot){
+  public EvenementRemplir(long date, Carte carte, Robot robot){
     super(date);
     this.carte = carte;
     this.robot = robot;
