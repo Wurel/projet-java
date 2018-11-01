@@ -20,6 +20,14 @@ import gui.Text;
 
 
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import gui.GUISimulator;
+import gui.Rectangle;
+import gui.ImageElement;
 
 public class TestTp{
   public static void main(String[] args) {
@@ -47,15 +55,16 @@ public class TestTp{
       simul.ajouteEvenement(new EvenementIntervention(12, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
       simul.ajouteEvenement(new EvenementDeplacement(13, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
 
-      while(!simul.simulationTerminee()){
-        for (Evenement event : simul.getEvenements()) {
-          if (event.getDate() == simul.getDate()) {
-            event.execute();
-          }
-        }
-        simul.incrementeDate();
-        jeu.draw();
-      }
+      jeu.setEvIterator(simul);
+      // while(!simul.simulationTerminee()){
+      //   for (Evenement event : simul.getEvenements()) {
+      //     if (event.getDate() == simul.getDate()) {
+      //       event.execute();
+      //     }
+      //   }
+      //   simul.incrementeDate();
+      //   jeu.draw();
+      // }
 
 
   }
@@ -67,6 +76,7 @@ class Jeu implements Simulable{
   private GUISimulator gui;
   private DonneesSimulation donnees;
   private int nombrePixels;
+  private Iterator<Evenement> evIterator;
 
   public Jeu(String fichier){
     this.nombrePixels = 50;
@@ -96,14 +106,16 @@ class Jeu implements Simulable{
     return this.donnees;
   }
 
+  public void setEvIterator(Simulateur simul){
+    this.evIterator = simul.getEvenements().iterator();
+  }
 
   @Override
   public void next() {
-      // if (this.xIterator.hasNext())
-      //     this.x = this.xIterator.next();
-      // if (this.yIterator.hasNext())
-      //     this.y = this.yIterator.next();
-      // draw();
+      if (this.evIterator.hasNext()){
+        this.evIterator.next().execute();
+      }
+      draw();
   }
 
 
@@ -114,7 +126,7 @@ class Jeu implements Simulable{
   }
 
 
-  void draw(){
+  private void draw(){
     gui.reset();	// clear the window
 
     for (int i = 0; i < this.donnees.getCarte().getNbLignes(); i++) {
@@ -144,19 +156,21 @@ class Jeu implements Simulable{
 
     int compteur = 0;
     for (Incendie incend : this.donnees.getIncendies() ) {
-      gui.addGraphicalElement(new Rectangle(60+incend.getColonne()*this.nombrePixels,
-       40+incend.getLigne()*this.nombrePixels,
-        Color.decode("#FE1B00"),
-        Color.decode("#FE1B00"),
-         this.nombrePixels/2));
-      gui.addGraphicalElement(new Text(60+incend.getColonne()*this.nombrePixels,
-       40+incend.getLigne()*this.nombrePixels, Color.decode("#A89874"),
-       new Integer(incend.getEauNecessaire()).toString()));
-       gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+200,
-       compteur*20 + 40,
-        Color.decode("#FFFFFF"),
-        incend.toString()));
-      compteur ++;
+      if (incend.getEauNecessaire() != 0){
+        gui.addGraphicalElement(new Rectangle(60+incend.getColonne()*this.nombrePixels,
+         40+incend.getLigne()*this.nombrePixels,
+          Color.decode("#FE1B00"),
+          Color.decode("#FE1B00"),
+           this.nombrePixels/2));
+        gui.addGraphicalElement(new Text(60+incend.getColonne()*this.nombrePixels,
+         40+incend.getLigne()*this.nombrePixels, Color.decode("#A89874"),
+         new Integer(incend.getEauNecessaire()).toString()));
+         gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+200,
+         compteur*20 + 40,
+          Color.decode("#FFFFFF"),
+          incend.toString()));
+        compteur ++;
+      }
 
     }
 
