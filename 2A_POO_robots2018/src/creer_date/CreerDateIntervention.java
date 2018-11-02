@@ -1,26 +1,24 @@
 package creer_date;
 import donnees.*;
 
-public class CreerDateIntervention {
-  long date;
-  Robot robot;
-  Direction dir;
+public class CreerDateIntervention extends CreerDate {
 
   public CreerDateIntervention(Robot robot, long date){
-    this.robot = robot;
-    this.date = date;
+    super(robot, date);
   }
 
   public long retourneDate(){
-    switch this.robot.getType{
+    switch (this.getRobot().getType()){
       case "Drone":
-        return this.date + 30;
+        return this.getDate() + 30; // Vide la totalité du réservoir en 30 sec
       case "Roues":
-        return this.date + 5;
+        return this.getDate() + 5;  // Vide 100 litres en 5 sec
       case "Chenilles":
-        return this.date + 8;
-      case "Pattes":
-        return this.date + 1;
+        return this.getDate() + 8; // Vide 100 litres en 8 sec
+      case "Pattes:" :
+        return this.getDate() + 1; // Vide 10 litres en 1 sec
+      default :
+        return this.getDate();
     }
   }
 

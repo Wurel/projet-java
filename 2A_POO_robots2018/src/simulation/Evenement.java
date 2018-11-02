@@ -11,6 +11,10 @@ public abstract class Evenement{
     return this.date;
   }
 
+  public void setDate(long date){
+    this.date = date;
+  }
+
   public abstract void execute();
 
 }

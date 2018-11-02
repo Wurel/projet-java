@@ -1,26 +1,24 @@
 package creer_date;
 import donnees.*;
 
-public class CreerDateRemplir {
-  long date;
-  Robot robot;
-  Direction dir;
+public class CreerDateRemplir extends CreerDate {
 
   public CreerDateRemplir(Robot robot, long date){
-    this.robot = robot;
-    this.date = date;
+    super(robot, date);
   }
 
   public long retourneDate(){
-    switch this.robot.getType{
+    switch (this.getRobot().getType()){
       case "Drone":
-        return this.date +  1800;
+        return this.getDate() +  1800; // Remplissage complet en 30 mins
       case "Roues":
-        return this.date + 600
+        return this.getDate() + 600; // Remplissage complet en 10 mins
       case "Chenilles":
-        return this.date + 300;
-      case "Pattes":
-        return this.date;
+        return this.getDate() + 300; // Remplissage complet en 5 mins
+      case "Pattes" :
+      default :
+        return this.getDate(); // Ne se remplit jamais
+    }
   }
 
 }

@@ -37,28 +37,47 @@ public class TestTp{
       // crée l'invader, en l'associant à la fenêtre graphique précédente
       Jeu jeu = new Jeu(args[0]);
       Simulateur simul = new Simulateur();
-      CreerDateDeplacement date = new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], 0,  Direction.values()[0]);
-      System.out.println(date.retourneDate());
-      simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], 0,  Direction.values()[0])).retourneDate()
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], 0,  Direction.values()[0]).retourneDate()
+        , Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(0).getDate(),  Direction.values()[3]).retourneDate()
+        , Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(1).getDate(),  Direction.values()[3]).retourneDate()
+        , Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementRemplir(new CreerDateRemplir(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(2).getDate()).retourneDate(), jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(3).getDate(),  Direction.values()[2]).retourneDate()
+        , Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(4).getDate(),  Direction.values()[2]).retourneDate()
+        , Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+
+      for(int i = 0; i < 50; i++){
+        simul.ajouteEvenement(new EvenementInterventionUnitaire(new CreerDateIntervention(jeu.getDonnees().getRobots()[1]
+        , simul.getEvenements().get(5+i).getDate()).retourneDate(), jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
+      }
+
+
+      //simul.ajouteEvenement(new EvenementIntervention(new CreerDateIntervention(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(5).getDate()).retourneDate(), jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1], simul));
+
+
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(55).getDate(),  Direction.values()[1]).retourneDate()
+        , Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(56).getDate(),  Direction.values()[0]).retourneDate()
       , Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], 0,  Direction.values()[3])
-      //   , Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], 0,  Direction.values()[3])
-      //   , Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementRemplir(5, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(6, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(7, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementIntervention(8, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(9, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      //
-      // simul.ajouteEvenement(new EvenementDeplacement(10, Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(11, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(12, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementRemplir(13, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(14, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(15, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementIntervention(16, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
-      // simul.ajouteEvenement(new EvenementDeplacement(17, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(57).getDate(),  Direction.values()[3]).retourneDate()
+        , Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(58).getDate(),  Direction.values()[3]).retourneDate()
+        , Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementRemplir(new CreerDateRemplir(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(59).getDate()).retourneDate(), jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(60).getDate(),  Direction.values()[2]).retourneDate()
+        , Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(61).getDate(),  Direction.values()[2]).retourneDate()
+        , Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementIntervention(new CreerDateIntervention(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(5).getDate())).retourneDate(), jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
+      for(int i = 0; i < 30; i++){
+        simul.ajouteEvenement(new EvenementInterventionUnitaire(new CreerDateIntervention(jeu.getDonnees().getRobots()[1]
+        , simul.getEvenements().get(62+i).getDate()).retourneDate(), jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
+      }
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], simul.getEvenements().get(92).getDate(),  Direction.values()[1]).retourneDate()
+        , Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
 
       jeu.setSimulateur(simul);
       for ( Robot robot : jeu.getDonnees().getRobots()){
@@ -110,6 +129,10 @@ class Jeu implements Simulable{
     this.simul = simul;
   }
 
+  public Simulateur getSimulateur(){
+    return this.simul;
+  }
+
   @Override
   public void next() {
       if (!this.simul.simulationTerminee()){
@@ -120,6 +143,7 @@ class Jeu implements Simulable{
           }
         }
         this.simul.incrementeDate();
+        System.out.println(this.simul.getDate());
       }
   }
 
@@ -130,24 +154,70 @@ class Jeu implements Simulable{
       this.donnees = new DonneesSimulation();
       this.donnees = LecteurDonnees.creeDonnees(this.fichier);
       Simulateur simul = new Simulateur();
-      simul.ajouteEvenement(new EvenementDeplacement(1, Direction.values()[0], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementIntervention(2, this.donnees.getIncendies(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(3, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(4, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementRemplir(5, this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(6, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(7, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementIntervention(8, this.donnees.getIncendies(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(9, Direction.values()[1], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(this.getDonnees().getRobots()[1], 0,  Direction.values()[0])).retourneDate()
+        , Direction.values()[0], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(0).getDate(),  Direction.values()[3])).retourneDate()
+        , Direction.values()[3], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(1).getDate(),  Direction.values()[3]).retourneDate()
+        , Direction.values()[3], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementRemplir(new CreerDateRemplir(this.getDonnees().getRobots()[1], simul.getEvenements().get(2).getDate()).retourneDate(), this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(3).getDate(),  Direction.values()[3])).retourneDate()
+        , Direction.values()[2], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(4).getDate(),  Direction.values()[3]).retourneDate()
+        , Direction.values()[2], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      for(int i = 0; i < 50; i++){
+        simul.ajouteEvenement(new EvenementInterventionUnitaire(new CreerDateIntervention(this.getDonnees().getRobots()[1]
+        , simul.getEvenements().get(5+i).getDate()).retourneDate(), this.getDonnees().getIncendies(), this.getDonnees().getRobots()[1]));
+      }
 
-      simul.ajouteEvenement(new EvenementDeplacement(10, Direction.values()[0], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(11, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(12, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementRemplir(13, this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(14, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(15, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementIntervention(16, this.donnees.getIncendies(), this.donnees.getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(17, Direction.values()[1], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+
+      //simul.ajouteEvenement(new EvenementIntervention(new CreerDateIntervention(this.getDonnees().getRobots()[1], simul.getEvenements().get(5).getDate()).retourneDate(), this.getDonnees().getIncendies(), this.getDonnees().getRobots()[1], simul));
+
+
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(55).getDate(),  Direction.values()[1]).retourneDate()
+        , Direction.values()[1], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(56).getDate(),  Direction.values()[0]).retourneDate()
+      , Direction.values()[0], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(57).getDate(),  Direction.values()[3]).retourneDate()
+        , Direction.values()[3], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(58).getDate(),  Direction.values()[3]).retourneDate()
+        , Direction.values()[3], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementRemplir(new CreerDateRemplir(this.getDonnees().getRobots()[1], simul.getEvenements().get(59).getDate()).retourneDate(), this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(60).getDate(),  Direction.values()[2]).retourneDate()
+        , Direction.values()[2], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(61).getDate(),  Direction.values()[2]).retourneDate()
+        , Direction.values()[2], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementIntervention(new CreerDateIntervention(this.getDonnees().getRobots()[1], simul.getEvenements().get(5).getDate())).retourneDate(), this.getDonnees().getIncendies(), this.getDonnees().getRobots()[1]));
+      for(int i = 0; i < 30; i++){
+        simul.ajouteEvenement(new EvenementInterventionUnitaire(new CreerDateIntervention(this.getDonnees().getRobots()[1]
+        , simul.getEvenements().get(62+i).getDate()).retourneDate(), this.getDonnees().getIncendies(), this.getDonnees().getRobots()[1]));
+      }
+      simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(92).getDate(),  Direction.values()[1]).retourneDate()
+        , Direction.values()[1], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
+
+
+
+
+
+
+      // simul.ajouteEvenement(new EvenementDeplacement(1, Direction.values()[0], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementIntervention(2, this.donnees.getIncendies(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(3, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(4, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementRemplir(5, this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(6, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(7, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementIntervention(8, this.donnees.getIncendies(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(9, Direction.values()[1], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      //
+      // simul.ajouteEvenement(new EvenementDeplacement(10, Direction.values()[0], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(11, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(12, Direction.values()[3], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementRemplir(13, this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(14, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(15, Direction.values()[2], this.donnees.getCarte(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementIntervention(16, this.donnees.getIncendies(), this.donnees.getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(17, Direction.values()[1], this.donnees.getCarte(), this.donnees.getRobots()[1]));
 
       this.simul = simul;
       for ( Robot robot : this.donnees.getRobots()){
