@@ -1,6 +1,7 @@
 import io.LecteurDonnees;
 import donnees.*;
 import simulation.*;
+import creer_date.*;
 // import simulation.Simulateur;
 
 import java.io.FileNotFoundException;
@@ -36,24 +37,28 @@ public class TestTp{
       // crée l'invader, en l'associant à la fenêtre graphique précédente
       Jeu jeu = new Jeu(args[0]);
       Simulateur simul = new Simulateur();
-      simul.ajouteEvenement(new EvenementDeplacement(1, Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementIntervention(2, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(3, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(4, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementRemplir(5, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(6, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(7, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementIntervention(8, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(9, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-
-      simul.ajouteEvenement(new EvenementDeplacement(10, Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(11, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(12, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementRemplir(13, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(14, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(15, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementIntervention(16, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
-      simul.ajouteEvenement(new EvenementDeplacement(17, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      CreerDateDeplacement date = new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], 0,  Direction.values()[0]);
+      System.out.println(date.retourneDate());
+      simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], 0,  Direction.values()[0])).retourneDate()
+      , Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], 0,  Direction.values()[3])
+      //   , Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(jeu.getDonnees().getRobots()[1], 0,  Direction.values()[3])
+      //   , Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementRemplir(5, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(6, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(7, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementIntervention(8, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(9, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      //
+      // simul.ajouteEvenement(new EvenementDeplacement(10, Direction.values()[0], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(11, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(12, Direction.values()[3], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementRemplir(13, jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(14, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(15, Direction.values()[2], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementIntervention(16, jeu.getDonnees().getIncendies(), jeu.getDonnees().getRobots()[1]));
+      // simul.ajouteEvenement(new EvenementDeplacement(17, Direction.values()[1], jeu.getDonnees().getCarte(), jeu.getDonnees().getRobots()[1]));
 
       jeu.setSimulateur(simul);
       for ( Robot robot : jeu.getDonnees().getRobots()){
