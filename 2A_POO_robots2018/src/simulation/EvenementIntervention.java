@@ -19,6 +19,7 @@ public class EvenementIntervention extends Evenement {
     this.robot = robot;
     this.incendies = incendies;
     this.simul = simul;
+    this.robot.setDate(date);
   }
 
   @Override
@@ -35,7 +36,7 @@ public class EvenementIntervention extends Evenement {
         // }
       //}
 
-      
+
       for (Incendie incend : this.incendies) {
         if (this.robot.getPosition().equals(incend.getPosition())) {
           int volume = 0;
@@ -48,8 +49,9 @@ public class EvenementIntervention extends Evenement {
           while (volume != 0){
             System.out.println("a");
             EvenementInterventionUnitaire interventionUnitaire = new EvenementInterventionUnitaire(new CreerDateIntervention(this.robot
-            , this.simul.getEvenements().get(5).getDate()).retourneDate(), this.incendies, this.robot);
-            interventionUnitaire.execute();
+            ).retourneDate(), this.incendies, this.robot);
+            this.simul.ajouteEvenement(interventionUnitaire);
+            // interventionUnitaire.execute();
             switch (this.robot.getType()){
               case "Drone":
                 volume = 0; // Vide la totalité du réservoir

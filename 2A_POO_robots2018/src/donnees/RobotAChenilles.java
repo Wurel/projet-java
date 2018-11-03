@@ -5,6 +5,7 @@ public class RobotAChenilles extends Robot {
   public RobotAChenilles(Carte carte, int ligne, int colonne){
     super(carte, ligne, colonne);
     this.setVitesse(60);
+    this.setReservoirEau(2000);
   }
 
   public RobotAChenilles(Carte carte, int ligne, int colonne, double vitesse){
@@ -13,6 +14,7 @@ public class RobotAChenilles extends Robot {
       throw new IllegalArgumentException("La vitesse d'un robot à chenilles ne peut excéder 80 km/h.");
     }
     this.setVitesse(vitesse);
+    this.setReservoirEau(2000);
   }
 
   @Override

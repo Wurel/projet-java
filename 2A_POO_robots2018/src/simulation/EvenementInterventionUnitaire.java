@@ -16,6 +16,7 @@ public class EvenementInterventionUnitaire extends Evenement {
     super(date);
     this.robot = robot;
     this.incendies = incendies;
+    this.robot.setDate(date);
   }
 
   @Override

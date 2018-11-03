@@ -5,9 +5,9 @@ public abstract class CreerDate {
   private long date;
   private Robot robot;
 
-  public CreerDate(Robot robot, long date){
+  public CreerDate(Robot robot){
     this.robot = robot;
-    this.date = date;
+    this.date = this.robot.getDate();
   }
 
   public void setDate(long date){

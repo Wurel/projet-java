@@ -12,6 +12,7 @@ public class EvenementRemplir extends Evenement{
     super(date);
     this.carte = carte;
     this.robot = robot;
+    this.robot.setDate(date);
   }
 
   @Override

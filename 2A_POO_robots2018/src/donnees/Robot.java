@@ -7,6 +7,7 @@ public abstract class Robot{
   private double vitesse;
   private int reservoirEau;
   private Simulateur simul;
+  private long date;
 
   public Robot(Carte carte, int ligne, int colonne){
     this.carte = carte;
@@ -15,6 +16,14 @@ public abstract class Robot{
 
   public Carte getCarte(){
     return this.carte;
+  }
+
+  public long getDate(){
+    return this.date;
+  }
+
+  public void setDate(long date){
+    this.date = date;
   }
 
   public Simulateur getSimulateur(){

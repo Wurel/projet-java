@@ -14,6 +14,7 @@ public class EvenementDeplacement extends Evenement{
     this.dir = dir;
     this.carte = carte;
     this.robot = robot;
+    this.robot.setDate(date);
   }
 
   @Override

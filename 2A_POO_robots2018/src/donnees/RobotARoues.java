@@ -5,11 +5,13 @@ public class RobotARoues extends Robot {
   public RobotARoues(Carte carte, int ligne, int colonne){
     super(carte, ligne, colonne);
     this.setVitesse(80);
+    this.setReservoirEau(5000);
   }
 
   public RobotARoues(Carte carte, int ligne, int colonne, double vitesse){
     super(carte, ligne, colonne);
     this.setVitesse(vitesse);
+    this.setReservoirEau(5000);
   }
 
   @Override

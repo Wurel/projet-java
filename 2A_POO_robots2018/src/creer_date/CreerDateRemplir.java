@@ -3,8 +3,8 @@ import donnees.*;
 
 public class CreerDateRemplir extends CreerDate {
 
-  public CreerDateRemplir(Robot robot, long date){
-    super(robot, date);
+  public CreerDateRemplir(Robot robot){
+    super(robot);
   }
 
   public long retourneDate(){

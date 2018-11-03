@@ -4,8 +4,8 @@ import donnees.*;
 public class CreerDateDeplacement extends CreerDate {
   private Direction dir;
 
-  public CreerDateDeplacement(Robot robot, long date,  Direction dir){
-    super(robot, date);
+  public CreerDateDeplacement(Robot robot,  Direction dir){
+    super(robot);
     this.dir = dir;
   }
 
