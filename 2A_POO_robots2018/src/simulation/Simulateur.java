@@ -27,12 +27,17 @@ public class Simulateur{
   }
 
   public boolean simulationTerminee(){
-    for (Evenement event : this.evenements) {
+    try {
+      for (Evenement event : this.evenements) {
         if (event.getDate() >= this.getDate()) {
           return false;
         }
+      }
+      return true;
+    }catch (NullPointerException e){
+      System.out.println("C est termine");
+      return true;
     }
-    return true;
   }
 
 }

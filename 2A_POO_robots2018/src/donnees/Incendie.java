@@ -6,6 +6,7 @@ public class Incendie{
   private int ligne;
   private int colonne;
   private int eauNecessaire;
+  private boolean affecte;
 
   public Incendie(Carte carte, int colonne, int ligne, int eauNecessaire){
     this.colonne = colonne;
@@ -13,6 +14,7 @@ public class Incendie{
     this.eauNecessaire = eauNecessaire;
     this.carte = carte;
     this.position = carte.getCase(ligne, colonne);
+    this.affecte = false;
   }
 
   public Incendie(Case position, int eauNecessaire){
@@ -42,6 +44,14 @@ public class Incendie{
 
   public int getColonne(){
     return this.colonne;
+  }
+
+  public boolean getAffecte(){
+    return this.affecte;
+  }
+
+  public void setAffecte(boolean affecte){
+    this.affecte = affecte;
   }
 
   @Override

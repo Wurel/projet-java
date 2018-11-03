@@ -36,17 +36,18 @@ public class Carte{
   }
 
   public Case getCase(int lig, int col){
-    if (lig <= this.nbLignes && col <= this.nbColonnes) {
+    if (lig < this.nbLignes && col < this.nbColonnes) {
       return this.tableauCases[lig][col];
     }
+    System.out.println("Essaie de niquer ta grosse mere");
     return this.tableauCases[lig][col];
   }
 
-
+// A SURVEILLER
   public boolean voisinExiste(Case src, Direction dir){
     switch (dir) {
       case EST:
-        if (src.getColonne() < this.nbColonnes) {
+        if (src.getColonne() < this.nbColonnes-1) {
           return true;
         }
         else return false;
@@ -61,7 +62,7 @@ public class Carte{
         }
         else return false;
       case SUD:
-        if (src.getLigne() < this.nbLignes) {
+        if (src.getLigne() < this.nbLignes-1) {
           return true;
         }
         else return false;

@@ -50,12 +50,10 @@ public class EvenementInterventionUnitaire extends Evenement {
             break;
           case "Pattes" :
             System.out.println("a");
-            if (this.robot.getReservoirEau() >= 10 && incend.getEauNecessaire() >= 10) {
-              this.robot.deverserEau(10);
+            if (incend.getEauNecessaire() >= 10) {
               incend.setEauNecessaire(incend.getEauNecessaire()-10);
             }
-            else if (this.robot.getReservoirEau() >= 10 && incend.getEauNecessaire() < 10){
-              this.robot.deverserEau(10 - incend.getEauNecessaire());
+            else if (incend.getEauNecessaire() < 10){
               incend.setEauNecessaire(0);
             }
             break;
