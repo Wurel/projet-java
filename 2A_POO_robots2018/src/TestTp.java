@@ -112,7 +112,7 @@ public class TestTp{
       // simul.ajouteEvenement(new EvenementDeplacement(new CreerDateDeplacement(this.getDonnees().getRobots()[1], simul.getEvenements().get(92).getDate(),  Direction.values()[1]).retourneDate()
       //   , Direction.values()[1], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
 
-
+      jeu.setChefPompierElementaire(totoLepompeur);
       jeu.setSimulateur(simul);
       for ( Robot robot : jeu.getDonnees().getRobots()){
         robot.setSimulateur(simul);
@@ -129,6 +129,7 @@ class Jeu implements Simulable{
   private String fichier;
   private int nombrePixels;
   private Simulateur simul;
+  private ChefPompierElementaire totoLepompeur;
 
   public Jeu(String fichier){
     this.nombrePixels = 50;
@@ -167,8 +168,15 @@ class Jeu implements Simulable{
     return this.simul;
   }
 
+  public void setChefPompierElementaire(ChefPompierElementaire totoLepompeur){
+    this.totoLepompeur = totoLepompeur;
+  }
+
   @Override
   public void next() {
+    if (this.simul.getDate()%200 == 0) {
+      this.totoLepompeur.ordres();
+    }
       if (!this.simul.simulationTerminee()){
         for (Evenement event : this.simul.getEvenements()) {
           if (event.getDate() == this.simul.getDate()) {
@@ -178,6 +186,10 @@ class Jeu implements Simulable{
         }
         this.simul.incrementeDate();
         System.out.println(this.simul.getDate());
+      }
+      else{
+        this.simul.incrementeDate();
+
       }
   }
 
