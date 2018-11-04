@@ -200,7 +200,11 @@ class Jeu implements Simulable{
       this.donnees = new DonneesSimulation();
       this.donnees = LecteurDonnees.creeDonnees(this.fichier);
       Simulateur simul = new Simulateur();
-      // simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(this.getDonnees().getRobots()[1], 0,  Direction.values()[0])).retourneDate()
+      this.setSimulateur(simul);
+      ChefPompierElementaire totoLepompeur = new ChefPompierElementaire(this.simul, this.getDonnees());
+      this.totoLepompeur = totoLepompeur;
+      this.totoLepompeur.ordres();
+    // simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(this.getDonnees().getRobots()[1], 0,  Direction.values()[0])).retourneDate()
       //   , Direction.values()[0], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
       // simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(this.getDonnees().getRobots()[1], this.getDonnees().getRobots()[1].getDate(),  Direction.values()[3])).retourneDate()
       //   , Direction.values()[3], this.getDonnees().getCarte(), this.getDonnees().getRobots()[1]));
