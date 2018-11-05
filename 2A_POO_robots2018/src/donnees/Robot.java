@@ -7,7 +7,6 @@ public abstract class Robot{
   private Case position;
   private double vitesse;
   private int reservoirEau;
-  private Simulateur simul;
   private long date;
 
   public Robot(Carte carte, int ligne, int colonne){
@@ -33,14 +32,6 @@ public abstract class Robot{
 
   public void setPosition(Case nvCase){
     this.position = nvCase;
-  }
-
-  public Simulateur getSimulateur(){
-    return this.simul;
-  }
-
-  public void setSimulateur(Simulateur simul){
-    this.simul = simul;
   }
 
   public void setVitesse(double vitesse){
@@ -112,7 +103,9 @@ public abstract class Robot{
   }
 
 
-  public abstract void deverserEau(int vol);
+  public void deverserEau(int vol){
+    this.setReservoirEau(this.getReservoirEau() - vol);
+  }
 
   public abstract void remplirReservoir();
 

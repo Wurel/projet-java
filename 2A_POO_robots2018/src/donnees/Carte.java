@@ -39,7 +39,7 @@ public class Carte{
     if (lig < this.nbLignes && col < this.nbColonnes) {
       return this.tableauCases[lig][col];
     }
-    System.out.println("Essaie de niquer ta grosse mere");
+    System.out.println("Cela dépasse les dimensions de la carte.");
     return this.tableauCases[lig][col];
   }
 
@@ -84,7 +84,7 @@ public class Carte{
           return this.tableauCases[src.getLigne() + 1][src.getColonne()];
       }
     }
-    System.out.println("Pas de voisin go niquer ta mere et verifier avant");
+    System.out.println("Il n'y a pas de voisin dans cette direction.");
     return this.tableauCases[0][0];
   }
 

@@ -62,18 +62,12 @@ public class RobotARoues extends Robot {
         case EAU:
         empty = false;
         this.setReservoirEau(5000);
-        break;// 10 mins pour le remplissage complet
-        // 5000 litres max
-        // comment gère t'on le temps ?
+        break;
       }
     }
     if(empty ) {
       throw new IllegalArgumentException("Le robot ne peut remplir son réservoir qu'à côté d'une case contenant de l'eau.");
     }
-  }
-
-  public void deverserEau(int vol){
-    this.setReservoirEau(this.getReservoirEau() - vol);
   }
 
   @Override

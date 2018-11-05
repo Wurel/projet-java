@@ -185,8 +185,6 @@ public class LecteurDonnees {
             throw new DataFormatException("format de case invalide. "
                     + "Attendu: nature altitude [valeur_specifique]");
         }
-
-        // System.out.println();
     }
 
 
@@ -255,12 +253,10 @@ public class LecteurDonnees {
 
     private static Incendie creeIncendie(int i, Carte carte) throws DataFormatException {
         ignorerCommentaires();
-        // System.out.print("Incendie " + i + ": ");
 
         try {
             int lig = scanner.nextInt();
             int col = scanner.nextInt();
-            // System.out.println(lig);
             int intensite = scanner.nextInt();
             if (intensite <= 0) {
                 throw new DataFormatException("incendie " + i
@@ -356,18 +352,11 @@ public class LecteurDonnees {
         try {
             int lig = scanner.nextInt();
             int col = scanner.nextInt();
-            // Robot robot = new Robot(lig, col);
-            // System.out.print("position = (" + lig + "," + col + ");");
             String type = scanner.next();
 
-            // System.out.print(type);
-            // robot += "," + type;
-
             // lecture eventuelle d'une vitesse du robot (entier)
-            // System.out.print("; \t vitesse = ");
             String s = scanner.findInLine("(\\d+)");	// 1 or more digit(s) ?
             // pour lire un flottant:    ("(\\d+(\\.\\d+)?)");
-            // System.out.print(type.equals("DRONE"));
             verifieLigneTerminee();
 
             if (type.equals("DRONE")){

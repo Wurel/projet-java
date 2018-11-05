@@ -1,11 +1,5 @@
 import io.LecteurDonnees;
-import donnees.Carte;
-import donnees.Case;
-import donnees.Incendie;
-import donnees.Robot;
-import donnees.Direction;
-import donnees.NatureTerrain;
-import donnees.DonneesSimulation;
+import donnees.*;
 
 import java.io.FileNotFoundException;
 import java.util.zip.DataFormatException;
@@ -20,10 +14,6 @@ public class TestLecteurDonnees {
 
         try {
           LecteurDonnees.lire(args[0]);
-          // DonneesSimulation donnees = new DonneesSimulation();
-          // donnees = LecteurDonnees.creeDonnees(args[0]);
-            // System.out.println(LecteurDonnees.creeDonnees(args[0]).getIncendies()[0].getEauNecessaire());
-          // System.out.println(donnees);
 
         } catch (FileNotFoundException e) {
             System.out.println("fichier " + args[0] + " inconnu ou illisible");

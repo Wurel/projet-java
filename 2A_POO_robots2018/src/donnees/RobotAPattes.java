@@ -55,11 +55,6 @@ public class RobotAPattes extends Robot {
     // ne se remplit jamais
   }
 
-  public void deverserEau(int vol){
-    this.setReservoirEau(this.getReservoirEau() - vol); // 1 sec pour vider 10 litres
-    // comment gère t'on le temps ?
-  }
-
   @Override
   public String toString(){
     return "Robot : [" + this.getPosition().getLigne() + ", " + this.getPosition().getColonne() + "]" + " type :  Pattes, vitesse : " + this.getVitesse(this.getPosition().getNature()) + " , reservoirEau : " + this.getReservoirEau() + "\n";
