@@ -162,7 +162,7 @@ class Jeu implements Simulable{
            this.nombrePixels/2));
         gui.addGraphicalElement(new Text(60+incend.getColonne()*this.nombrePixels,
          40+incend.getLigne()*this.nombrePixels, Color.decode("#A89874"),
-         new Integer(incend.getEauNecessaire()).toString()));
+         Integer.toString(incend.getEauNecessaire())));
          gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+200,
          compteur*20 + 40,
           Color.decode("#FFFFFF"),
@@ -184,8 +184,8 @@ class Jeu implements Simulable{
        robot.getType()));
      gui.addGraphicalElement(new Text(60+robot.getPosition().getColonne()*this.nombrePixels,
       60+robot.getPosition().getLigne()*this.nombrePixels, Color.decode("#A89874"),
-      new Integer(robot.getReservoirEau()).toString()));
-      gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+240,
+      Integer.toString(robot.getReservoirEau())));
+      gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+280,
        compteur_robot*20 + 40,
         Color.decode("#FFFFFF"),
         robot.toString()));

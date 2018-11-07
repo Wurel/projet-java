@@ -26,9 +26,10 @@ public class ChefPompierElementaire{
             continue;
           }
           else{
+            robot.setDate(this.simul.getDate());
             System.out.println(incend.getAffecte());
-            incend.setAffecte(new Boolean(true));
-            ArrayList<Case> chemin = new ArrayList();
+            incend.setAffecte(true);
+            ArrayList<Case> chemin = new ArrayList<Case>();
             chemin = robot.goTo(incend.getPosition());
             Case futurCase = robot.getPosition();
             int j = 0;
@@ -38,6 +39,7 @@ public class ChefPompierElementaire{
                 if (j < chemin.size() && robot.getCarte().voisinExiste(futurCase, Direction.values()[i]) && robot.getCarte().getVoisin(futurCase, Direction.values()[i]).equals(chemin.get(j))) {
                   simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(robot, Direction.values()[i])).retourneDate()
                     , Direction.values()[i], robot.getCarte(), robot));
+                    System.out.println(robot.getDate());
                     futurCase = chemin.get(j);
                     j++;
                     System.out.println("Le robot " + robot.getType() + " va se deplacer vers " + Direction.values()[i] + " pour eteindre l'incendie " + incend);

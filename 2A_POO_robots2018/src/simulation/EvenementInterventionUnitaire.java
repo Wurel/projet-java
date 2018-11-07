@@ -49,7 +49,6 @@ public class EvenementInterventionUnitaire extends Evenement {
             }
             break;
           case "Pattes" :
-            System.out.println("a");
             if (incend.getEauNecessaire() >= 10) {
               incend.setEauNecessaire(incend.getEauNecessaire()-10);
             }

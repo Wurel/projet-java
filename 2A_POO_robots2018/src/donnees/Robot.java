@@ -50,12 +50,12 @@ public abstract class Robot{
     return this.reservoirEau;
   }
 
-  public ArrayList goTo(Case nvCase){
+  public ArrayList<Case> goTo(Case nvCase){
     int nbLignes = this.carte.getNbLignes();
     int nbColonnes = this.carte.getNbColonnes();
     double inf = Double.POSITIVE_INFINITY;
     int current = this.position.getLigne() * nbColonnes + this.position.getColonne();
-    ArrayList <Dijkstra> tableauDijkstra = new ArrayList <Dijkstra>();
+    ArrayList<Dijkstra> tableauDijkstra = new ArrayList<Dijkstra>();
     for (int i=0; i <= nbLignes*nbColonnes; i++){
       if (i/nbColonnes < nbLignes && i%nbColonnes < nbColonnes) {
 
@@ -93,7 +93,7 @@ public abstract class Robot{
       }
     }
     /** On retourne le chemin, sans la première case où on est **/
-    ArrayList <Case> chemin = new ArrayList <Case>();
+    ArrayList<Case> chemin = new ArrayList<Case>();
     while (tableauDijkstra.get(current).getPosition().equals(this.position) != true){
       chemin.add(tableauDijkstra.get(current).getPosition());
       current = tableauDijkstra.get(current).getPrecedent().getLigne() * nbColonnes + tableauDijkstra.get(current).getPrecedent().getColonne();

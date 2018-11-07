@@ -27,10 +27,10 @@ testInvader:
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestInvader.java
 
 testLecture:
-	javac -d bin -sourcepath src src/TestLecteurDonnees.java
+	javac -d bin -sourcepath src src/TestLecteurDonnees.java -Xlint:unchecked
 
 testTp:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestTp.java
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestTp.java -Xlint:unchecked -Xlint:deprecation
 
 # Execution:
 # on peut taper directement la ligne de commande :

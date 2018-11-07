@@ -9,7 +9,7 @@ public class Simulateur{
     try {
       this.evenements.add(e);
     }catch (NullPointerException excep) {
-      evenements = new ArrayList();
+      evenements = new ArrayList<Evenement>();
       this.evenements.add(e);
     }
   }
