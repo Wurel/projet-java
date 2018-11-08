@@ -57,7 +57,7 @@ class Jeu implements Simulable{
   private ChefPompierElementaire totoLePompier;
 
   public Jeu(String fichier){
-    this.nombrePixels = 50;
+    this.nombrePixels = 100;
   try {
 
     this.donnees = new DonneesSimulation();
@@ -144,10 +144,15 @@ class Jeu implements Simulable{
 
     for (int i = 0; i < this.donnees.getCarte().getNbLignes(); i++) {
       for (int j = 0; j < this.donnees.getCarte().getNbColonnes(); j++) {
-        gui.addGraphicalElement(new Rectangle(60+j*this.nombrePixels, 40+i*this.nombrePixels,
-          Color.decode(this.donnees.getCarte().getCase(i,j).getCouleur()),
-          Color.decode(this.donnees.getCarte().getCase(i,j).getCouleur()),
-           this.nombrePixels));
+        gui.addGraphicalElement(
+        new ImageElement(50 + this.donnees.getCarte().getCase(i,j).getColonne()*this.nombrePixels -this.nombrePixels/2,50 +
+        this.donnees.getCarte().getCase(i, j).getLigne()*this.nombrePixels -this.nombrePixels/2,
+                      this.donnees.getCarte().getCase(i,j).getImage() ,this.nombrePixels, this.nombrePixels, null ) );
+
+        // gui.addGraphicalElement(new Rectangle(60+j*this.nombrePixels, 40+i*this.nombrePixels,
+        //   Color.decode(this.donnees.getCarte().getCase(i,j).getCouleur()),
+        //   Color.decode(this.donnees.getCarte().getCase(i,j).getCouleur()),
+        //    this.nombrePixels));
       }
 
     }
@@ -155,14 +160,20 @@ class Jeu implements Simulable{
     int compteur = 0;
     for (Incendie incend : this.donnees.getIncendies() ) {
       if (incend.getEauNecessaire() != 0){
-        gui.addGraphicalElement(new Rectangle(60+incend.getColonne()*this.nombrePixels,
-         40+incend.getLigne()*this.nombrePixels,
-          Color.decode("#FE1B00"),
-          Color.decode("#FE1B00"),
-           this.nombrePixels/2));
-        gui.addGraphicalElement(new Text(60+incend.getColonne()*this.nombrePixels,
-         40+incend.getLigne()*this.nombrePixels, Color.decode("#A89874"),
-         Integer.toString(incend.getEauNecessaire())));
+        gui.addGraphicalElement(
+        new ImageElement(50 + incend.getColonne()*this.nombrePixels -this.nombrePixels/2,50 +
+        incend.getLigne()*this.nombrePixels -this.nombrePixels/2,
+                      "src/image/feu.gif" ,this.nombrePixels, this.nombrePixels, null ) );
+
+
+        // gui.addGraphicalElement(new Rectangle(60+incend.getColonne()*this.nombrePixels,
+        //  40+incend.getLigne()*this.nombrePixels,
+        //   Color.decode("#FE1B00"),
+        //   Color.decode("#FE1B00"),
+        //    this.nombrePixels/2));
+        // gui.addGraphicalElement(new Text(60+incend.getColonne()*this.nombrePixels,
+        //  40+incend.getLigne()*this.nombrePixels, Color.decode("#A89874"),
+        //  Integer.toString(incend.getEauNecessaire())));
          gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+200,
          compteur*20 + 40,
           Color.decode("#FFFFFF"),
@@ -174,17 +185,25 @@ class Jeu implements Simulable{
 
     int compteur_robot = compteur;
     for (Robot robot : this.donnees.getRobots() ) {
-      gui.addGraphicalElement(new Rectangle(60+robot.getPosition().getColonne()*this.nombrePixels,
-       40+robot.getPosition().getLigne()*this.nombrePixels,
-        Color.decode("#A22C29"),
-        Color.decode("#A22C29"),
-         this.nombrePixels/2));
-      gui.addGraphicalElement(new Text(60+robot.getPosition().getColonne()*this.nombrePixels,
-       40+robot.getPosition().getLigne()*this.nombrePixels, Color.decode("#A89874"),
-       robot.getType()));
-     gui.addGraphicalElement(new Text(60+robot.getPosition().getColonne()*this.nombrePixels,
-      60+robot.getPosition().getLigne()*this.nombrePixels, Color.decode("#A89874"),
-      Integer.toString(robot.getReservoirEau())));
+      // gui.addGraphicalElement(new Rectangle(60+robot.getPosition().getColonne()*this.nombrePixels,
+      //  40+robot.getPosition().getLigne()*this.nombrePixels,
+      //   Color.decode("#A22C29"),
+      //   Color.decode("#A22C29"),
+      //    this.nombrePixels/2));
+      gui.addGraphicalElement(
+      new ImageElement(50 + robot.getPosition().getColonne()*this.nombrePixels -this.nombrePixels/2,50 +
+      robot.getPosition().getLigne()*this.nombrePixels -this.nombrePixels/2,
+      "src/image/" + robot.getType() + ".png" ,(int)(this.nombrePixels), (int)(this.nombrePixels), null ) );
+
+
+
+
+    //   gui.addGraphicalElement(new Text(60+robot.getPosition().getColonne()*this.nombrePixels,
+    //    40+robot.getPosition().getLigne()*this.nombrePixels, Color.decode("#A89874"),
+    //    robot.getType()));
+    //  gui.addGraphicalElement(new Text(60+robot.getPosition().getColonne()*this.nombrePixels,
+    //   60+robot.getPosition().getLigne()*this.nombrePixels, Color.decode("#A89874"),
+    //   Integer.toString(robot.getReservoirEau())));
       gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+280,
        compteur_robot*20 + 40,
         Color.decode("#FFFFFF"),

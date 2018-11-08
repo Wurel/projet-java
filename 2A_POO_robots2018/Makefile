@@ -44,7 +44,7 @@ exeLecture:
 	java -classpath bin TestLecteurDonnees cartes/carteSujet.map
 
 exeTp:
-	java -classpath bin:bin/gui.jar TestTp cartes/carteSujet.map
+	java -classpath bin:bin/gui.jar TestTp cartes/mushroomOfHell-20x20.map
 
 clean:
 	rm -rf bin/*.class
