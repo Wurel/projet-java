@@ -44,7 +44,7 @@ public class Case{
       case EAU:
         return "src/image/Eau.png";
       case FORET:
-        return "src/image/Arbre.png";
+        return "src/image/Foret.jpeg";
       case ROCHE:
         return "src/image/Rocher.jpg";
       case TERRAIN_LIBRE:

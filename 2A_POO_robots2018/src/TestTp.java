@@ -57,7 +57,7 @@ class Jeu implements Simulable{
   private ChefPompierElementaire totoLePompier;
 
   public Jeu(String fichier){
-    this.nombrePixels = 100;
+    this.nombrePixels = 50;
   try {
 
     this.donnees = new DonneesSimulation();
