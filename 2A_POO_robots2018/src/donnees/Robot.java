@@ -92,6 +92,7 @@ public abstract class Robot{
         }
       }
     }
+    System.out.println(tableauDijkstra);
     /** On retourne le chemin, sans la première case où on est **/
     ArrayList<Case> chemin = new ArrayList<Case>();
     while (tableauDijkstra.get(current).getPosition().equals(this.position) != true){

@@ -22,7 +22,7 @@ public class ChefPompierElementaire{
       else{
         System.out.println(incend);
         for (Robot robot : this.donnees.getRobots()) {
-          if (incend.getAffecte() || (this.simul.getDate() < robot.getDate()) || (robot.getReservoirEau() == 0 && !(robot.getType().equals("Pattes")) )) {
+          if (incend.getAffecte() || !(robot.peutSeDeplacer(incend.getPosition())) || (this.simul.getDate() < robot.getDate()) || (robot.getReservoirEau() == 0 && !(robot.getType().equals("Pattes")) )) {
             continue;
           }
           else{

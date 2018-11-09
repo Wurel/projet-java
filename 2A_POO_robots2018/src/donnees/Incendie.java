@@ -8,7 +8,7 @@ public class Incendie{
   private int eauNecessaire;
   private boolean affecte;
 
-  public Incendie(Carte carte, int colonne, int ligne, int eauNecessaire){
+  public Incendie(Carte carte, int ligne, int colonne, int eauNecessaire){
     this.colonne = colonne;
     this.ligne = ligne;
     this.eauNecessaire = eauNecessaire;
