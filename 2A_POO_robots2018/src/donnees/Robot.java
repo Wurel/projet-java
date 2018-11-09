@@ -91,6 +91,10 @@ public abstract class Robot{
           }
         }
       }
+      if (min == Double.POSITIVE_INFINITY){
+        ArrayList <Case> chemin = new ArrayList <Case>();
+        return chemin;
+      }
     }
     System.out.println(tableauDijkstra);
     /** On retourne le chemin, sans la première case où on est **/
@@ -101,6 +105,15 @@ public abstract class Robot{
     }
     Collections.reverse(chemin);
     return chemin;
+  }
+
+  public boolean peutAller(Case nvCase){
+    ArrayList <Case> chemin = new ArrayList();
+    chemin = robot.goTo(nvCase);
+    if (chemin.size() = 0){
+      return false;
+    }
+    return true;
   }
 
 
