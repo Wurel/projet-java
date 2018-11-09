@@ -14,6 +14,35 @@ public class ChefPompierElementaire{
   }
 
   public void ordres(){
+    for (Robot robot : this.donnees.getRobots()) {
+      if (robot.getReservoirEau() == 0 && !(robot.getType().equals("Pattes"))){
+        robot.setDate(this.simul.getDate());
+        ArrayList<Case> caseEau = new ArrayList<Case>();
+        caseEau = robot.getCarte().getCaseEau();
+        ArrayList<Case> cheminEau = new ArrayList<Case>();
+        cheminEau = robot.goTo(caseEau.get(0));
+        Case futurCase = robot.getPosition();
+        int j = 0;
+        for (int i = 0; i < 4; i = i + 1) {
+          if (j < cheminEau.size() && robot.getCarte().voisinExiste(futurCase, Direction.values()[i]) && robot.getCarte().getVoisin(futurCase, Direction.values()[i]).equals(cheminEau.get(j))) {
+            simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(robot, Direction.values()[i])).retourneDate()
+              , Direction.values()[i], robot.getCarte(), robot));
+              System.out.println(robot.getDate());
+              futurCase = cheminEau.get(j);
+              j++;
+              System.out.println("Le robot " + robot.getType() + " va se deplacer vers " + Direction.values()[i] + " pour remplir son réservoir ");
+          }
+        }
+        simul.ajouteEvenement(new EvenementRemplir(new CreerDateRemplir(robot).retourneDate(), robot.getCarte(), robot));
+        // for (Case caseTestee : caseEau){
+        //   ArrayList<Case> chemin = new ArrayList<Case>();
+        //   chemin = robot.goTo(caseTestee);
+        //   // Calcul du temps
+        //   // Calcul du min
+        //   // Simulation
+        // }
+      }
+    }
     for (Incendie incend : this.donnees.getIncendies()) {
       if (incend.getAffecte()) {
         System.out.println("L Incendie EST AFFECTE ");
@@ -22,7 +51,7 @@ public class ChefPompierElementaire{
       else{
         System.out.println(incend);
         for (Robot robot : this.donnees.getRobots()) {
-          if (incend.getAffecte() || !(robot.peutSeDeplacer(incend.getPosition())) || (this.simul.getDate() < robot.getDate()) || (robot.getReservoirEau() == 0 && !(robot.getType().equals("Pattes")) )) {
+          if (incend.getAffecte() || !(robot.peutAller(incend.getPosition())) || (this.simul.getDate() < robot.getDate()) || (robot.getReservoirEau() == 0 && !(robot.getType().equals("Pattes")))) {
             continue;
           }
           else{

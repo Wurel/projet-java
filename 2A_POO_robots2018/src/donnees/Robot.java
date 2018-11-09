@@ -108,9 +108,9 @@ public abstract class Robot{
   }
 
   public boolean peutAller(Case nvCase){
-    ArrayList <Case> chemin = new ArrayList();
-    chemin = robot.goTo(nvCase);
-    if (chemin.size() = 0){
+    ArrayList<Case> chemin = new ArrayList<Case>();
+    chemin = this.goTo(nvCase);
+    if (chemin.size() == 0){
       return false;
     }
     return true;

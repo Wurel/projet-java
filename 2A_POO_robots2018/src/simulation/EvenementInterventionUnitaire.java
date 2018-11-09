@@ -57,6 +57,9 @@ public class EvenementInterventionUnitaire extends Evenement {
             }
             break;
         }
+      if ((this.robot.getReservoirEau() == 0) && (incend.getEauNecessaire() != 0)){
+        incend.setAffecte(false);
+      }
       }
     }
   }

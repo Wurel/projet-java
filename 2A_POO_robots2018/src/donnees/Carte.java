@@ -1,4 +1,5 @@
 package donnees;
+import java.util.*;
 
 public class Carte{
   private int tailleCases;
@@ -86,6 +87,18 @@ public class Carte{
     }
     System.out.println("Il n'y a pas de voisin dans cette direction.");
     return this.tableauCases[0][0];
+  }
+
+  public ArrayList<Case> getCaseEau(){
+    ArrayList<Case> caseEau = new ArrayList<Case>();
+    for (int i = 0; i < this.nbLignes; i++) {
+      for (int j = 0; j < this.nbColonnes; j++) {
+        if (tableauCases[i][j].getNature() == NatureTerrain.values()[0]){
+          caseEau.add(tableauCases[i][j]);
+        }
+      }
+    }
+    return caseEau;
   }
 
   @Override
