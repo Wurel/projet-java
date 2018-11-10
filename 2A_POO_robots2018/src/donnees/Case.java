@@ -55,6 +55,13 @@ public class Case{
     return "";
   }
 
+  public Direction getDirectionVoisin(Case nvCase){
+    int dirSud = (nvCase.getLigne() - this.ligne == 1)?1:0;
+    int dirEst = (nvCase.getColonne() - this.colonne == 1)?2:0;
+    int dirOuest = (nvCase.getColonne() - this.colonne == -1)?3:0;
+    return Direction.values()[dirSud + dirEst + dirOuest];
+  }
+
   public boolean equals(Case otherCase){
     if (this.ligne != otherCase.getLigne()){
       return false;

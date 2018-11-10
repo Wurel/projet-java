@@ -8,6 +8,7 @@ public abstract class Robot{
   private double vitesse;
   private int reservoirEau;
   private long date;
+  private boolean occupe;
 
   public Robot(Carte carte, int ligne, int colonne){
     this.carte = carte;
@@ -24,6 +25,14 @@ public abstract class Robot{
 
   public void setDate(long date){
     this.date = date;
+  }
+
+  public boolean getOccupe(){
+    return this.occupe;
+  }
+
+  public void setOccupe(boolean occupe){
+    this.occupe = occupe;
   }
 
   public Case getPosition(){
@@ -96,7 +105,6 @@ public abstract class Robot{
         return chemin;
       }
     }
-    System.out.println(tableauDijkstra);
     /** On retourne le chemin, sans la première case où on est **/
     ArrayList<Case> chemin = new ArrayList<Case>();
     while (tableauDijkstra.get(current).getPosition().equals(this.position) != true){
@@ -115,6 +123,17 @@ public abstract class Robot{
     }
     return true;
   }
+
+  public long timeToGoTo(ArrayList<Case> chemin){
+    double vitesse = this.getVitesse(this.getPosition().getNature());
+    for(Case currentCase : chemin){
+      vitesse += this.getVitesse(currentCase.getNature());
+    }
+    double dtime = (chemin.size()*this.getCarte().getTailleCases())/(vitesse/(chemin.size()+1));
+    long ltime = (long) dtime;
+    return ltime;
+  }
+
 
 
   public void deverserEau(int vol){

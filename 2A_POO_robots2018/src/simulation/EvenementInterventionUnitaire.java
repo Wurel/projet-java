@@ -30,6 +30,7 @@ public class EvenementInterventionUnitaire extends Evenement {
             if (this.robot.getReservoirEau() - incend.getEauNecessaire() >= 0) {
               this.robot.deverserEau(incend.getEauNecessaire());
               incend.setEauNecessaire(0);
+              //this.robot.setOccupe(false);
             }
             else {
               System.out.println(this.robot.getReservoirEau());
@@ -46,6 +47,7 @@ public class EvenementInterventionUnitaire extends Evenement {
             else if (this.robot.getReservoirEau() >= 100 && incend.getEauNecessaire() < 100){
               this.robot.deverserEau(100 - incend.getEauNecessaire());
               incend.setEauNecessaire(0);
+              //this.robot.setOccupe(false);
             }
             break;
           case "Pattes" :
@@ -57,9 +59,9 @@ public class EvenementInterventionUnitaire extends Evenement {
             }
             break;
         }
-      if ((this.robot.getReservoirEau() == 0) && (incend.getEauNecessaire() != 0)){
-        incend.setAffecte(false);
-      }
+        if(this.robot.getReservoirEau() == 0){
+          this.robot.setOccupe(false);
+        }
       }
     }
   }

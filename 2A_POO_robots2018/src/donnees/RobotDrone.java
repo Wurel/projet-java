@@ -51,7 +51,7 @@ public class RobotDrone extends Robot {
     switch(this.getPosition().getNature()){
         case EAU:
         empty = false;
-        this.setReservoirEau(2000);
+        this.setReservoirEau(10000);
         break;
       }
     if(empty ) {

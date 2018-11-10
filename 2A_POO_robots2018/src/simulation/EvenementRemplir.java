@@ -18,6 +18,7 @@ public class EvenementRemplir extends Evenement{
   @Override
   public void execute(){
     this.robot.remplirReservoir();
+    this.robot.setOccupe(false);
    }
 
 }

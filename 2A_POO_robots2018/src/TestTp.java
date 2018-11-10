@@ -38,9 +38,9 @@ public class TestTp{
       Simulateur simul = new Simulateur();
       jeu.setSimulateur(simul);
 
-      ChefPompierElementaire totoLePompier = new ChefPompierElementaire(simul, jeu.getDonnees());
+      ChefPompierEvolue totoLePompier = new ChefPompierEvolue(simul, jeu.getDonnees());
       totoLePompier.ordres();
-      jeu.setChefPompierElementaire(totoLePompier);
+      jeu.setChefPompierEvolue(totoLePompier);
 
       jeu.setSimulateur(simul);
   }
@@ -54,7 +54,7 @@ class Jeu implements Simulable{
   private String fichier;
   private int nombrePixels;
   private Simulateur simul;
-  private ChefPompierElementaire totoLePompier;
+  private ChefPompierEvolue totoLePompier;
 
   public Jeu(String fichier){
     this.nombrePixels = 50;
@@ -91,7 +91,7 @@ class Jeu implements Simulable{
     return this.simul;
   }
 
-  public void setChefPompierElementaire(ChefPompierElementaire totoLePompier){
+  public void setChefPompierEvolue(ChefPompierEvolue totoLePompier){
     this.totoLePompier = totoLePompier;
   }
 
@@ -124,7 +124,7 @@ class Jeu implements Simulable{
       this.donnees = LecteurDonnees.creeDonnees(this.fichier);
       Simulateur simul = new Simulateur();
       this.setSimulateur(simul);
-      ChefPompierElementaire totoLePompier = new ChefPompierElementaire(this.simul, this.getDonnees());
+      ChefPompierEvolue totoLePompier = new ChefPompierEvolue(this.simul, this.getDonnees());
       this.totoLePompier = totoLePompier;
       this.totoLePompier.ordres();
 
