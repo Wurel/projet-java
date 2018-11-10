@@ -22,25 +22,14 @@ public class ChefPompierElementaire{
         ArrayList<Case> cheminEau = new ArrayList<Case>();
         cheminEau = robot.goTo(caseEau.get(0));
         Case futurCase = robot.getPosition();
-        int j = 0;
-        for (int i = 0; i < 4; i = i + 1) {
-          if (j < cheminEau.size() && robot.getCarte().voisinExiste(futurCase, Direction.values()[i]) && robot.getCarte().getVoisin(futurCase, Direction.values()[i]).equals(cheminEau.get(j))) {
-            simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(robot, Direction.values()[i])).retourneDate()
-              , Direction.values()[i], robot.getCarte(), robot));
-              System.out.println(robot.getDate());
-              futurCase = cheminEau.get(j);
-              j++;
-              System.out.println("Le robot " + robot.getType() + " va se deplacer vers " + Direction.values()[i] + " pour remplir son réservoir ");
-          }
+        for(int j = 0; j < chemin.size(); j++){
+          simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(robot, futurCase.getDirectionVoisin(chemin.get(j)))).retourneDate()
+            , futurCase.getDirectionVoisin(chemin.get(j)), robot.getCarte(), robot));
+          System.out.println(robot.getDate());
+          System.out.println(futurCase.getDirectionVoisin(chemin.get(j)));
+          futurCase = chemin.get(j);
         }
         simul.ajouteEvenement(new EvenementRemplir(new CreerDateRemplir(robot).retourneDate(), robot.getCarte(), robot));
-        // for (Case caseTestee : caseEau){
-        //   ArrayList<Case> chemin = new ArrayList<Case>();
-        //   chemin = robot.goTo(caseTestee);
-        //   // Calcul du temps
-        //   // Calcul du min
-        //   // Simulation
-        // }
       }
     }
     for (Incendie incend : this.donnees.getIncendies()) {
@@ -61,47 +50,36 @@ public class ChefPompierElementaire{
             ArrayList<Case> chemin = new ArrayList<Case>();
             chemin = robot.goTo(incend.getPosition());
             Case futurCase = robot.getPosition();
-            int j = 0;
-            for (Case caz : chemin) {
-              System.out.println("La prochaine case est la " + caz);
-              for (int i = 0; i < 4; i = i + 1) {
-                if (j < chemin.size() && robot.getCarte().voisinExiste(futurCase, Direction.values()[i]) && robot.getCarte().getVoisin(futurCase, Direction.values()[i]).equals(chemin.get(j))) {
-                  simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(robot, Direction.values()[i])).retourneDate()
-                    , Direction.values()[i], robot.getCarte(), robot));
-                    System.out.println(robot.getDate());
-                    futurCase = chemin.get(j);
-                    j++;
-                    System.out.println("Le robot " + robot.getType() + " va se deplacer vers " + Direction.values()[i] + " pour eteindre l'incendie " + incend);
-
-                }
-              }
+            for(int j = 0; j < chemin.size(); j++){
+              simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(robot, futurCase.getDirectionVoisin(chemin.get(j)))).retourneDate()
+                , futurCase.getDirectionVoisin(chemin.get(j)), robot.getCarte(), robot));
+              System.out.println(robot.getDate());
+              System.out.println(futurCase.getDirectionVoisin(chemin.get(j)));
+              futurCase = chemin.get(j);
             }
+
             int eauIncend = incend.getEauNecessaire();
             int eauRobot = robot.getReservoirEau();
-            int decrementation = 0;
-
-            switch(robot.getType()){
-              case "Drone" :
-                decrementation = 10000;
-                break;
-              case "Roues" :
-              case "Chenilles" :
-                decrementation = 100;
-                break;
-              case "Pattes" :
-                decrementation = 10;
-                break;
-            }
 
             while (eauIncend > 0 && (eauRobot > 0 || robot.getType().equals("Pattes"))) {
               simul.ajouteEvenement(new EvenementInterventionUnitaire(new CreerDateIntervention(robot
               ).retourneDate(), this.donnees.getIncendies(), robot));
-              eauRobot -= decrementation;
-              eauIncend -= decrementation;
-
+              switch(robot.getType()){
+                case "Drone" :
+                  eauRobot -= 10000;
+                  eauIncend -= 10000;
+                  break;
+                case "Roues" :
+                case "Chenilles" :
+                  eauRobot -= 100;
+                  eauIncend -= 100;
+                  break;
+                case "Pattes" :
+                  eauRobot -= 10;
+                  eauIncend -= 10;
+                  break;
+              }
             }
-            System.out.println();
-            System.out.println();
           }
         }
       }

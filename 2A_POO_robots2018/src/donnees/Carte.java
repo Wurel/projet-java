@@ -44,7 +44,6 @@ public class Carte{
     return this.tableauCases[lig][col];
   }
 
-// A SURVEILLER
   public boolean voisinExiste(Case src, Direction dir){
     switch (dir) {
       case EST:
@@ -89,16 +88,16 @@ public class Carte{
     return this.tableauCases[0][0];
   }
 
-  public ArrayList<Case> getCaseEau(){
-    ArrayList<Case> caseEau = new ArrayList<Case>();
+  public ArrayList<Case> getCasesEau(){
+    ArrayList<Case> casesEau = new ArrayList<Case>();
     for (int i = 0; i < this.nbLignes; i++) {
       for (int j = 0; j < this.nbColonnes; j++) {
         if (tableauCases[i][j].getNature() == NatureTerrain.values()[0]){
-          caseEau.add(tableauCases[i][j]);
+          casesEau.add(tableauCases[i][j]);
         }
       }
     }
-    return caseEau;
+    return casesEau;
   }
 
   @Override

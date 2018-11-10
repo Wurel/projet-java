@@ -35,7 +35,7 @@ public class Simulateur{
       }
       return true;
     }catch (NullPointerException e){
-      System.out.println("C est termine");
+      System.out.println("C'est terminé");
       return true;
     }
   }

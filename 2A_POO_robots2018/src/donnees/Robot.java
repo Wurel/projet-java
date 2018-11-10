@@ -124,7 +124,7 @@ public abstract class Robot{
     return true;
   }
 
-  public long timeToGoTo(ArrayList<Case> chemin){
+  public long timeToDo(ArrayList<Case> chemin){
     double vitesse = this.getVitesse(this.getPosition().getNature());
     for(Case currentCase : chemin){
       vitesse += this.getVitesse(currentCase.getNature());

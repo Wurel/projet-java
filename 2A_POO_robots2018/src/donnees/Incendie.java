@@ -3,14 +3,10 @@ package donnees;
 public class Incendie{
   private Carte carte;
   private Case position;
-  private int ligne;
-  private int colonne;
   private int eauNecessaire;
   private boolean affecte;
 
   public Incendie(Carte carte, int ligne, int colonne, int eauNecessaire){
-    this.colonne = colonne;
-    this.ligne = ligne;
     this.eauNecessaire = eauNecessaire;
     this.carte = carte;
     this.position = carte.getCase(ligne, colonne);
@@ -39,11 +35,11 @@ public class Incendie{
   }
 
   public int getLigne(){
-    return this.ligne;
+    return this.position.getLigne();
   }
 
   public int getColonne(){
-    return this.colonne;
+    return this.position.getColonne();
   }
 
   public boolean getAffecte(){
@@ -56,6 +52,6 @@ public class Incendie{
 
   @Override
   public String toString(){
-    return "Incendie : [" + this.ligne + ", " + this.colonne + "]" + " eau necessaire : " + this.eauNecessaire + "\n";
+    return "Incendie : [" + this.getLigne() + ", " + this.getColonne() + "]" + " eau necessaire : " + this.eauNecessaire + "\n";
   }
 }

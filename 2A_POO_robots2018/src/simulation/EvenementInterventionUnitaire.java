@@ -23,17 +23,14 @@ public class EvenementInterventionUnitaire extends Evenement {
   public void execute(){
     for (Incendie incend : incendies) {
       if (this.robot.getPosition().equals(incend.getPosition())) {
-        System.out.println("il est sur la bonne case");
-        System.out.println(this.robot.getType());
         switch(this.robot.getType()){
           case "Drone" :
             if (this.robot.getReservoirEau() - incend.getEauNecessaire() >= 0) {
               this.robot.deverserEau(incend.getEauNecessaire());
               incend.setEauNecessaire(0);
-              //this.robot.setOccupe(false);
+              this.robot.setOccupe(false);
             }
             else {
-              System.out.println(this.robot.getReservoirEau());
               incend.setEauNecessaire(incend.getEauNecessaire() - this.robot.getReservoirEau());
               this.robot.deverserEau(this.robot.getReservoirEau());
             }
@@ -47,20 +44,24 @@ public class EvenementInterventionUnitaire extends Evenement {
             else if (this.robot.getReservoirEau() >= 100 && incend.getEauNecessaire() < 100){
               this.robot.deverserEau(100 - incend.getEauNecessaire());
               incend.setEauNecessaire(0);
-              //this.robot.setOccupe(false);
+              this.robot.setOccupe(false);
             }
             break;
           case "Pattes" :
-            if (incend.getEauNecessaire() >= 10) {
+            if (incend.getEauNecessaire() > 10) {
               incend.setEauNecessaire(incend.getEauNecessaire()-10);
             }
-            else if (incend.getEauNecessaire() < 10){
+            else if (incend.getEauNecessaire() <= 10){
               incend.setEauNecessaire(0);
+              this.robot.setOccupe(false);
             }
             break;
         }
-        if(this.robot.getReservoirEau() == 0){
+        if((this.robot.getReservoirEau() == 0) && !(robot.getType().equals("Pattes"))){
           this.robot.setOccupe(false);
+          if (incend.getEauNecessaire() != 0){
+            incend.setAffecte(false);
+          }
         }
       }
     }

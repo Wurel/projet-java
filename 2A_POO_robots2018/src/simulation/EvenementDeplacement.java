@@ -5,9 +5,9 @@ import donnees.*;
 
 public class EvenementDeplacement extends Evenement{
 
-  Direction dir;
-  Carte carte;
-  Robot robot;
+  private Direction dir;
+  private Carte carte;
+  private Robot robot;
 
   public EvenementDeplacement(long date, Direction dir, Carte carte, Robot robot){
     super(date);

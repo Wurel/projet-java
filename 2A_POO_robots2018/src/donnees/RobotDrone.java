@@ -61,6 +61,6 @@ public class RobotDrone extends Robot {
 
   @Override
   public String toString(){
-    return "Robot : [" + this.getPosition().getLigne() + ", " + this.getPosition().getColonne() + "]" + " type :  Drones, vitesse : " + this.getVitesse(this.getPosition().getNature()) + " , reservoirEau : " + this.getReservoirEau() + " , date : " + this.getDate() + "\n";
+    return "Robot : [" + this.getPosition().getLigne() + ", " + this.getPosition().getColonne() + "]" + " type :  Drones, reservoirEau : " + this.getReservoirEau() + " , date : " + this.getDate() + "\n";
   }
 }

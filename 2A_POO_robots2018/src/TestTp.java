@@ -204,7 +204,7 @@ class Jeu implements Simulable{
     //  gui.addGraphicalElement(new Text(60+robot.getPosition().getColonne()*this.nombrePixels,
     //   60+robot.getPosition().getLigne()*this.nombrePixels, Color.decode("#A89874"),
     //   Integer.toString(robot.getReservoirEau())));
-      gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+280,
+      gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+240,
        compteur_robot*20 + 40,
         Color.decode("#FFFFFF"),
         robot.toString()));

@@ -57,6 +57,6 @@ public class RobotAPattes extends Robot {
 
   @Override
   public String toString(){
-    return "Robot : [" + this.getPosition().getLigne() + ", " + this.getPosition().getColonne() + "]" + " type :  Pattes, vitesse : " + this.getVitesse(this.getPosition().getNature()) + " , reservoirEau : " + this.getReservoirEau() + " , date : " + this.getDate() + "\n";
+    return "Robot : [" + this.getPosition().getLigne() + ", " + this.getPosition().getColonne() + "]" + " type :  Pattes, reservoirEau : infini, date : " + this.getDate() + "\n";
   }
 }

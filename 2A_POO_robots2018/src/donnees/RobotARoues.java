@@ -72,6 +72,6 @@ public class RobotARoues extends Robot {
 
   @Override
   public String toString(){
-    return "Robot : [" + this.getPosition().getLigne() + ", " + this.getPosition().getColonne() + "]" + " type :  Roues, vitesse : " + this.getVitesse(this.getPosition().getNature()) + " , reservoirEau : " + this.getReservoirEau() + " , date : " + this.getDate() + "\n";
+    return "Robot : [" + this.getPosition().getLigne() + ", " + this.getPosition().getColonne() + "]" + " type :  Roues, reservoirEau : " + this.getReservoirEau() + " , date : " + this.getDate() + "\n";
   }
 }

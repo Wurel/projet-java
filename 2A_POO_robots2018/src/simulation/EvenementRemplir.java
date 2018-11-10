@@ -5,8 +5,8 @@ import donnees.Carte;
 
 
 public class EvenementRemplir extends Evenement{
-  Carte carte;
-  Robot robot;
+  private Carte carte;
+  private Robot robot;
 
   public EvenementRemplir(long date, Carte carte, Robot robot){
     super(date);
