@@ -1,0 +1,52 @@
+Introduction:
+Afin d'avoir un code compréhensible et facilement accessible nous l'avons reparti en plusieurs packages :
+- package données
+- package
+
+Nous avons pris partis de mettre tous les attributs en private.
+
+
+
+	1- Package Donnees
+Dans le package donnees nous avons créés plusieurs classes pour representer les différents objets du problème.
+-La classe abstraite Robot. Cette classe nous permet d'avoir le schéma général des différents robots qui héritent de cette classe. Elle possede les attributs que nous avons jugés nécessaires aux robots.
+Tout d'abord la carte ainsi que la case sur lequel le robot se trouve. Ces deux informations permettent de localiser le robot et donc de pouvoir le deplacer. En plus des geters et seters cette classe possede une méthode essentielle : goTo prennant en parametre une case qui est la destination du robot, elle renvoit le chemin le plus court a emprunter utilisant l'algorithme de Dijkstra pour le robot en tenant compte de sa vitesse sur les différents terrains, c'est pourquoi vitesse et aussi un attribut de la classe. 
+!!! PEUT ALLER !!!
+Enfin la classe a deux autres attributs un de type int reservoirEau qui contient la quantité d'eau disponible dans le reservoir du Robot et un de type long date qui correspond a la date de fin du prochain evenement éxécuté par le Robot.
+Elle possède d'autres méthodes aux nomx explicites : deverserEau, remplirReservoir (abstraite), peutSeDeplacer (abstraite), toString, getType (abstraite).
+Nous avons ensuite fait une classe pour chacun des types de robot avec chacun deux constructeurs : un avec la carte, la ligne et la colonne sur lesquelles le robot est placé et un autre avec en plus la vitesse qui peut etre changée dans les limites du sujet (sauf pour le robot à pattes toujours selon le sujet).
+Chacunes des fonctions definies dans la classe Robot sont ensuite modifiée selon les contraintes imposées aux différents robots.
+
+-Deux classes enums NatureTerrain et Direction qui recensent respectivement les différentes natures de terrain possible et les 4 directions que peuvent prendre les robots Nord, Sud, Est, Ouest.
+
+-La classe Carte ayant 4 attributs : tailleCases, nbLignes, nbColonnes et une matrice de Case tableauCases.
+Elle possède des geters seulement pour les attributs tailleCases, nbLignes, nbColonnes.
+Ses différentes méthodes :
+	-setCase qui permet de set une case dans la matrice de cases,
+	-getCase qui renvoit une case si la ligne et colonne demandée existe,
+	-voisinExiste qui renvoit un boolean sur l'existence d'un voisin suivant la direction demandée,
+	-getVoisin qui renvoit la case voisine a la direction indiquée de la case,
+	-toString qui appelle la toString de chacune des cases.
+
+-La classe Case ayant trois attributs : ligne, colonne, nature. Elle possède les geters associes. Elle contient deux méthodes pour l'affichage :
+	-une pour un affichage en rectangles colorés, elle renvoit donc un String representant une couleur suivant la nature du terrain,
+	-une pour un affichage avec des images, elle renvoit donc le chemin vers l'image correspondante à la nature du terrain.
+La méthode equals est également implantée elle renvoit true si deux cases sont identiques c'est à dire si chacun de leurs attributs sont égaux.
+Enfin la méthode toString qui permet d'avoir toutes les informations relatives à la case.
+
+-La classe Incendie qui possède !!!5!!! attributs : carte, ligne, colonne, eauNecessaire, affecte (boolean indiquant si un robot est affecte a cet incendie).
+Cette classe contient seulement un constructeur, la méthode toString, des geters et des seters.
+
+-La classe DonneesSimulation qui contient toutes les données du problème : la carte, un tableau d'incendies, un tableau de robots. Ces seules méthodes sont des seters, geters et toString. Cette classe nous permet juste de centraliser l'ensemble des données.
+
+	2- Package creer_date
+Ce package sert à créer les dates pour les évènements. Nous avons choisi de faire une classe mère CreerDate qui est une classe abtraite. Ainsi chacunes des classes adaptées à un évènement en héritent.
+
+-La classe abstraite CreerDate possede 2 attributs : date qui correspond à la date d'éxécution du dernier évènement et robot qui correspond au robot qui a exectuer l'action. Elle possède des geters et seters pour ses attributs ainsi qu'un constructeur. 
+Une autre méthode définie dans cette classe est retourneDate dans la classe mère elle est définie de manière abstraite. Elle prend donc différentes formes suivant l'évènement : pour l'évènement Intervention elle renvoit la date du robot incrémentée de la durée d'une action d'intervention, elle procède de la même manière pour remplir le réservoir du robot. 
+Pour ce qui est de CreerDateDeplacement on a ajouté un attribut dir de type Direction qui renvoit la date à laquelle le robot sera sur la case à la direction de sa case actuelle en prenant en compte sa vitesse, la taille de la case et le type de terrain.
+
+	3- Package simulation
+Ce package permet de gérer la simulation du problème : un chef pompier creer des evenements pour les robots qu'il ajoute dans un simulateur. Explication des différentes classes:
+
+-La classe abstraite Evenement avec pour seul argument date. Elle possède un geter et un seter et une méthode abstraite execute. De cette méthode hérite 4 classes. Une première classe EvenementMessage qui permet d'afficher un message a la date date via la fonction execute. Trois classes correspondant aux différentes actions possibles des robots : EvenementDeplacement, EvenementInterventionUnitaire, EvenementRemplir. EvenementDeplacement 
