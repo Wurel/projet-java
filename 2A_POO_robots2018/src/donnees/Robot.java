@@ -119,6 +119,9 @@ public abstract class Robot{
     ArrayList<Case> chemin = new ArrayList<Case>();
     chemin = this.goTo(nvCase);
     if (chemin.size() == 0){
+      if (this.getPosition().equals(nvCase)){
+        return true;
+      }
       return false;
     }
     return true;

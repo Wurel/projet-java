@@ -9,59 +9,60 @@ import donnees.Incendie;
 public class EvenementInterventionUnitaire extends Evenement {
 
   private Robot robot;
-  private Incendie[] incendies;
+  private Incendie incendie;
 
 
-  public EvenementInterventionUnitaire(long date, Incendie[] incendies, Robot robot){
+  public EvenementInterventionUnitaire(long date, Incendie incend, Robot robot){
     super(date);
     this.robot = robot;
-    this.incendies = incendies;
+    this.incendie = incend;
     this.robot.setDate(date);
   }
 
   @Override
   public void execute(){
-    for (Incendie incend : incendies) {
-      if (this.robot.getPosition().equals(incend.getPosition())) {
-        switch(this.robot.getType()){
-          case "Drone" :
-            if (this.robot.getReservoirEau() - incend.getEauNecessaire() >= 0) {
-              this.robot.deverserEau(incend.getEauNecessaire());
-              incend.setEauNecessaire(0);
-              this.robot.setOccupe(false);
-            }
-            else {
-              incend.setEauNecessaire(incend.getEauNecessaire() - this.robot.getReservoirEau());
-              this.robot.deverserEau(this.robot.getReservoirEau());
-            }
-            break;
-          case "Roues" :
-          case "Chenilles" :
-            if (this.robot.getReservoirEau() >= 100 && incend.getEauNecessaire() >= 100) {
-              this.robot.deverserEau(100);
-              incend.setEauNecessaire(incend.getEauNecessaire()-100);
-            }
-            else if (this.robot.getReservoirEau() >= 100 && incend.getEauNecessaire() < 100){
-              this.robot.deverserEau(100 - incend.getEauNecessaire());
-              incend.setEauNecessaire(0);
-              this.robot.setOccupe(false);
-            }
-            break;
-          case "Pattes" :
-            if (incend.getEauNecessaire() > 10) {
-              incend.setEauNecessaire(incend.getEauNecessaire()-10);
-            }
-            else if (incend.getEauNecessaire() <= 10){
-              incend.setEauNecessaire(0);
-              this.robot.setOccupe(false);
-            }
-            break;
-        }
-        if((this.robot.getReservoirEau() == 0) && !(robot.getType().equals("Pattes"))){
-          this.robot.setOccupe(false);
-          if (incend.getEauNecessaire() != 0){
-            incend.setAffecte(false);
+    if (this.robot.getPosition().equals(this.incendie.getPosition())) {
+      switch(this.robot.getType()){
+        case "Drone" :
+          if (this.robot.getReservoirEau() - this.incendie.getEauNecessaire() >= 0) {
+            this.robot.deverserEau(this.incendie.getEauNecessaire());
+            this.incendie.setEauNecessaire(0);
+            this.robot.setOccupe(false);
           }
+          else {
+            this.incendie.setEauNecessaire(this.incendie.getEauNecessaire() - this.robot.getReservoirEau());
+            this.robot.deverserEau(this.robot.getReservoirEau());
+          }
+          break;
+        case "Roues" :
+        case "Chenilles" :
+          if (this.robot.getReservoirEau() >= 100 && this.incendie.getEauNecessaire() >= 100) {
+            this.robot.deverserEau(100);
+            this.incendie.setEauNecessaire(this.incendie.getEauNecessaire()-100);
+            if(this.incendie.getEauNecessaire() == 0){
+              this.robot.setOccupe(false);
+            }
+          }
+          else if (this.robot.getReservoirEau() >= 100 && this.incendie.getEauNecessaire() < 100){
+            this.robot.deverserEau(100 - this.incendie.getEauNecessaire());
+            this.incendie.setEauNecessaire(0);
+            this.robot.setOccupe(false);
+          }
+          break;
+        case "Pattes" :
+          if (this.incendie.getEauNecessaire() > 10) {
+            this.incendie.setEauNecessaire(this.incendie.getEauNecessaire()-10);
+          }
+          else if (this.incendie.getEauNecessaire() <= 10){
+            this.incendie.setEauNecessaire(0);
+            this.robot.setOccupe(false);
+          }
+          break;
+      }
+      if((this.robot.getReservoirEau() == 0) && !(robot.getType().equals("Pattes"))){
+        this.robot.setOccupe(false);
+        if (this.incendie.getEauNecessaire() != 0){
+          this.incendie.setAffecte(false);
         }
       }
     }

@@ -24,6 +24,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 import gui.GUISimulator;
 import gui.Rectangle;
@@ -100,20 +101,28 @@ class Jeu implements Simulable{
     if (this.simul.getDate()%200 == 0) {
       this.totoLePompier.ordres();
     }
-      if (!this.simul.simulationTerminee()){
-        for (Evenement event : this.simul.getEvenements()) {
-          if (event.getDate() == this.simul.getDate()) {
-            event.execute();
-            draw();
-          }
+    if (!this.simul.simulationTerminee()){
+      for (Evenement event : this.simul.getEvenements()) {
+        if (event.getDate() == this.simul.getDate()) {
+          event.execute();
+          draw();
         }
-        this.simul.incrementeDate();
-        System.out.println(this.simul.getDate());
       }
-      else{
-        this.simul.incrementeDate();
+      this.simul.incrementeDate();
+      System.out.println(this.simul.getDate());
+    }
+    else{
+      System.out.println("Tous les incendies ont été éteints");
+      Scanner lectClavier = new Scanner(System.in);
+      while (true) {
+          System.out.println("Arrêter le programme ?"); // (oui pour arrêter)
+          String rep = lectClavier.nextLine();
+          if (rep.equals("oui")){
+            System.exit (0);
+          }
+      }
+    }
 
-      }
   }
 
 
