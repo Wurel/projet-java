@@ -1,12 +1,21 @@
 package creer_date;
 import donnees.*;
 
+/**
+  * Classe modelisant le temps de fin d'intervention d'un robot
+  */
 public class CreerDateIntervention extends CreerDate {
 
+  /**
+    * @param robot Robot concerne par la modelisation
+    */
   public CreerDateIntervention(Robot robot){
     super(robot);
   }
 
+  /**
+    * @return Renvoie la date de fin d'intervention
+    */
   public long retourneDate(){
     switch (this.getRobot().getType()){
       case "Drone":

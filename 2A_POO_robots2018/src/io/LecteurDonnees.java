@@ -56,6 +56,11 @@ public class LecteurDonnees {
         System.out.println("\n == Lecture terminee");
     }
 
+    /**
+      * Cree les donnees du probleme
+      * @param fichierDonnees fichier de donnees
+      * @return Renvoie les donnees du probleme
+      */
     public static DonneesSimulation creeDonnees(String fichierDonnees)
       throws FileNotFoundException, DataFormatException {
       System.out.println("\n == Lecture du fichier" + fichierDonnees);
@@ -109,7 +114,10 @@ public class LecteurDonnees {
         // une ExceptionFormat levee depuis lireCase est remontee telle quelle
     }
 
-
+    /**
+      * Cree la carte
+      * @return Renvoie la carte creee
+      */
     public static Carte creeCarte() throws DataFormatException {
         ignorerCommentaires();
         try {
@@ -164,6 +172,12 @@ public class LecteurDonnees {
         System.out.println();
     }
 
+    /**
+      * Cree une case
+      * @param lig ligne de la case a creer
+      * @param col colonne de la case a creer
+      * @return Renvoie la case creee
+      */
     private static Case creeCase(int lig, int col) throws DataFormatException {
         ignorerCommentaires();
         String chaineNature = new String();
@@ -207,6 +221,11 @@ public class LecteurDonnees {
         }
     }
 
+    /**
+      * Cree les incendies
+      * @param carte Carte du probleme
+      * @return Renvoie les incendies crees
+      */
     public static Incendie[] creeIncendies(Carte carte) throws DataFormatException {
         ignorerCommentaires();
         try {
@@ -251,6 +270,12 @@ public class LecteurDonnees {
         }
     }
 
+    /**
+      * Cree le i-eme incendie
+      * @param i
+      * @param carte Carte du probleme
+      * @return Renvoie le i-eme incendie cree
+      */
     private static Incendie creeIncendie(int i, Carte carte) throws DataFormatException {
         ignorerCommentaires();
 
@@ -290,6 +315,11 @@ public class LecteurDonnees {
         }
     }
 
+    /**
+      * Cree les robots
+      * @param carte Carte du probleme
+      * @return Renvoie les robots crees
+      */
     public static Robot[] creeRobots(Carte carte) throws DataFormatException {
         ignorerCommentaires();
         try {
@@ -346,6 +376,12 @@ public class LecteurDonnees {
         }
     }
 
+    /**
+      * Cree le i-eme robot
+      * @param i
+      * @param carte Carte du probleme
+      * @return Renvoie le i-eme robot
+      */
     private static Robot creeRobot(int i, Carte carte) throws DataFormatException {
         ignorerCommentaires();
 

@@ -1,12 +1,21 @@
 package creer_date;
 import donnees.*;
 
+/**
+  * Classe modelisant la date de fin de remplissage pour un robot
+  */
 public class CreerDateRemplir extends CreerDate {
 
+  /**
+    * @param robot Robot concerne par la modelisation
+    */
   public CreerDateRemplir(Robot robot){
     super(robot);
   }
 
+  /**
+    * @return Renvoie la date de fin de remplissage
+    */
   public long retourneDate(){
     switch (this.getRobot().getType()){
       case "Drone":
