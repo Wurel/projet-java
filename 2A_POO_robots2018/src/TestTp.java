@@ -109,7 +109,6 @@ class Jeu implements Simulable{
         }
       }
       this.simul.incrementeDate();
-      System.out.println(this.simul.getDate());
     }
     else{
       this.simul.incrementeDate();
