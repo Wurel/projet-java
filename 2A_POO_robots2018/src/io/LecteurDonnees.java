@@ -16,23 +16,23 @@ import java.util.*;
 import java.util.zip.DataFormatException;
 
 /**
- * Lecteur de cartes au format spectifié dans le sujet.
- * Les données sur les cases, robots puis incendies sont lues dans le fichier,
- * puis simplement affichées.
- * A noter: pas de vérification sémantique sur les valeurs numériques lues.
+ * Lecteur de cartes au format spectifie dans le sujet.
+ * Les donnees sur les cases, robots puis incendies sont lues dans le fichier,
+ * puis simplement affichees.
+ * A noter: pas de verification semantique sur les valeurs numeriques lues.
  *
  * IMPORTANT:
  *
  * Cette classe ne fait que LIRE les infos et les afficher.
- * A vous de modifier ou d'ajouter des méthodes, inspirées de celles présentes
- * (ou non), qui CREENT les objets au moment adéquat pour construire une
- * instance de la classe DonneesSimulation à partir d'un fichier.
+ * A vous de modifier ou d'ajouter des methodes, inspirees de celles presentes
+ * (ou non), qui CREENT les objets au moment adequat pour construire une
+ * instance de la classe DonneesSimulation a partir d'un fichier.
  *
- * Vous pouvez par exemple ajouter une méthode qui crée et retourne un objet
- * contenant toutes les données lues:
+ * Vous pouvez par exemple ajouter une methode qui cree et retourne un objet
+ * contenant toutes les donnees lues:
  *    public static DonneesSimulation creeDonnees(String fichierDonnees);
- * Et faire des méthode creeCase(), creeRobot(), ... qui lisent les données,
- * créent les objets adéquats et les ajoutent ds l'instance de
+ * Et faire des methode creeCase(), creeRobot(), ... qui lisent les donnees,
+ * creent les objets adequats et les ajoutent ds l'instance de
  * DonneesSimulation.
  */
 public class LecteurDonnees {
@@ -41,9 +41,9 @@ public class LecteurDonnees {
     /**
      * Lit et affiche le contenu d'un fichier de donnees (cases,
      * robots et incendies).
-     * Ceci est méthode de classe; utilisation:
+     * Ceci est methode de classe; utilisation:
      * LecteurDonnees.lire(fichierDonnees)
-     * @param fichierDonnees nom du fichier à lire
+     * @param fichierDonnees nom du fichier a lire
      */
     public static void lire(String fichierDonnees)
         throws FileNotFoundException, DataFormatException {
