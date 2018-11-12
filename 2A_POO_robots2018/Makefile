@@ -44,6 +44,5 @@ exeTp:
 docs:
 	javadoc -d docs -sourcepath ./src/ -subpackages src:donnees simulation creer_date io
 
-
 clean:
 	rm -rf bin/*.class

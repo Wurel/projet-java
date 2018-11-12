@@ -30,7 +30,14 @@ import gui.GUISimulator;
 import gui.Rectangle;
 import gui.ImageElement;
 
+/**
+  * Classe contenant un main permettant de tester les differentes fonctionnalites
+  */
 public class TestTp{
+
+  /**
+    * @param args Prend en argument le chemin vers la carte
+    */
   public static void main(String[] args) {
       // crée la fenêtre graphique dans laquelle dessiner
       // GUISimulator gui = new GUISimulator(800, 600, Color.BLACK);
@@ -47,6 +54,9 @@ public class TestTp{
   }
 }
 
+/**
+  * Classe representant le jeu
+  */
 class Jeu implements Simulable{
 
   /** L'interface graphique associée */
@@ -57,6 +67,9 @@ class Jeu implements Simulable{
   private Simulateur simul;
   private ChefPompierEvolue totoLePompier;
 
+  /**
+    * Initialise le jeu
+    */
   public Jeu(String fichier){
     this.nombrePixels = 50;
   try {
@@ -80,22 +93,37 @@ class Jeu implements Simulable{
 
   }
 
+  /**
+    * @return Renvoie les donnees du pobleme
+    */
   public DonneesSimulation getDonnees(){
     return this.donnees;
   }
 
+  /**
+    * @simul Set le Simulateur
+    */
   public void setSimulateur(Simulateur simul){
     this.simul = simul;
   }
 
+  /**
+    * @return Renvoie le simulateur
+    */
   public Simulateur getSimulateur(){
     return this.simul;
   }
 
+  /**
+    * @param totoLePompier Set le chef pompier
+    */
   public void setChefPompierEvolue(ChefPompierEvolue totoLePompier){
     this.totoLePompier = totoLePompier;
   }
 
+  /**
+    * Permet de passer a l'etape suivante dans la simulation
+    */
   @Override
   public void next() {
     if (this.simul.getDate()%200 == 0) {
@@ -115,7 +143,9 @@ class Jeu implements Simulable{
     }
   }
 
-
+  /**
+    * Permet de redemarrer la simulation
+    */
   @Override
   public void restart() {
     try {
@@ -137,7 +167,9 @@ class Jeu implements Simulable{
     draw();
   }
 
-
+  /**
+    * Creer l'interface graphique
+    */
   void draw(){
     gui.reset();	// clear the window
 
