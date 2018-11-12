@@ -24,7 +24,7 @@ public class EvenementDeplacement extends Evenement{
       this.robot.setPosition(carte.getVoisin(this.robot.getPosition(), this.dir));
     }
     else{
-      throw new IllegalArgumentException("Le robot " + this.robot.getType() + " ne peut pas se deplacer dans cette direction : " + dir);
+      throw new IllegalArgumentException("Le robot " + this.robot.getType() + " ne peut pas se deplacer dans cette direction : " + this.dir);
     }
   }
 

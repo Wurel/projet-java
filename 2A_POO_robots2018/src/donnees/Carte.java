@@ -1,6 +1,7 @@
 package donnees;
 import java.util.*;
 import java.lang.IndexOutOfBoundsException;
+import java.lang.IllegalArgumentException;
 
 public class Carte{
   private int tailleCases;
@@ -52,22 +53,22 @@ public class Carte{
         if (src.getColonne() < this.nbColonnes-1) {
           return true;
         }
-        else return false;
+        return false;
       case OUEST:
         if (0 < src.getColonne()) {
           return true;
         }
-        else return false;
+        return false;
       case NORD:
         if (0 < src.getLigne()) {
           return true;
         }
-        else return false;
+        return false;
       case SUD:
         if (src.getLigne() < this.nbLignes-1) {
           return true;
         }
-        else return false;
+        return false;
     }
     return false;
 
@@ -77,16 +78,16 @@ public class Carte{
     if (voisinExiste(src, dir)) {
       switch (dir) {
         case EST:
-        return this.tableauCases[src.getLigne()][src.getColonne() + 1];
+          return this.tableauCases[src.getLigne()][src.getColonne() + 1];
         case OUEST:
-        return this.tableauCases[src.getLigne()][src.getColonne() - 1];
+          return this.tableauCases[src.getLigne()][src.getColonne() - 1];
         case NORD:
-        return this.tableauCases[src.getLigne() - 1][src.getColonne()];
+          return this.tableauCases[src.getLigne() - 1][src.getColonne()];
         case SUD:
           return this.tableauCases[src.getLigne() + 1][src.getColonne()];
       }
     }
-    return this.tableauCases[0][0];
+    return null;
   }
 
   public ArrayList<Case> getCasesEau(){

@@ -16,7 +16,6 @@ public class ChefPompierElementaire{
   public void ordres(){
     for (Incendie incend : this.donnees.getIncendies()) {
       if (incend.getAffecte()) {
-        System.out.println("L'incendie est affecté");
         continue;
       }
       else{
@@ -26,7 +25,6 @@ public class ChefPompierElementaire{
           }
           else{
             robot.setDate(this.simul.getDate());
-            System.out.println(incend.getAffecte());
             incend.setAffecte(true);
             ArrayList<Case> chemin = new ArrayList<Case>();
             chemin = robot.goTo(incend.getPosition());
@@ -34,8 +32,6 @@ public class ChefPompierElementaire{
             for(int j = 0; j < chemin.size(); j++){
               simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(robot, futurCase.getDirectionVoisin(chemin.get(j)))).retourneDate()
                 , futurCase.getDirectionVoisin(chemin.get(j)), robot.getCarte(), robot));
-              System.out.println(robot.getDate());
-              System.out.println(futurCase.getDirectionVoisin(chemin.get(j)));
               futurCase = chemin.get(j);
             }
 

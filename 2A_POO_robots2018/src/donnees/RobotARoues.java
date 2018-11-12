@@ -36,33 +36,16 @@ public class RobotARoues extends Robot {
     }
   }
 
-  public void setPosition(Case nvCase){
-    boolean still = true;
-    boolean notAdapt = true;
-    for ( Direction dir : Direction.values()){
-      if (this.getCarte().getVoisin(this.getPosition(), dir).equals(nvCase)){
-        still = false;
-        if (this.peutSeDeplacer(nvCase)){
-          super.setPosition(nvCase);
-          notAdapt = false;
-        }
-      }
-    }
-    if (still) {
-      throw new IllegalArgumentException("Le robot n'est pas à côté de cette position.");
-    } else if (notAdapt){
-      throw new IllegalArgumentException("Le robot ne peut se déplacer que sur du terrain libre ou habitat.");
-    }
-  }
-
   public void remplirReservoir(){
     boolean empty = true;
     for(Direction dir : Direction.values()){
-      switch(this.getCarte().getVoisin(this.getPosition(), dir).getNature()){
-        case EAU:
-        empty = false;
-        this.setReservoirEau(5000);
-        break;
+      if (this.getCarte().voisinExiste(this.getPosition(), dir)){
+        switch(this.getCarte().getVoisin(this.getPosition(), dir).getNature()){
+          case EAU:
+          empty = false;
+          this.setReservoirEau(5000);
+          break;
+        }
       }
     }
     if(empty ) {

@@ -33,19 +33,6 @@ public class RobotDrone extends Robot {
     return super.getVitesse(naturePosition);
   }
 
-  public void setPosition(Case nvCase){
-    boolean still = true;
-    for ( Direction dir : Direction.values()){
-      if (this.getCarte().getVoisin(this.getPosition(), dir).equals(nvCase)){
-        super.setPosition(nvCase);
-        still = false;
-      }
-    }
-    if (still) {
-      throw new IllegalArgumentException("Le robot n'est pas à côté de cette position.");
-    }
-  }
-
   public void remplirReservoir(){
     boolean empty = true;
     switch(this.getPosition().getNature()){

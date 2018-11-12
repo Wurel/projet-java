@@ -68,7 +68,7 @@ public class ChefPompierEvolue{
           case "Chenilles" : // d'une case d'eau de même que le robot à chenilles
             for (Case caseTestee : casesEau){
               for (int i = 0; i < 4; i++){
-                if (robot.peutAller(robot.getCarte().getVoisin(caseTestee, Direction.values()[i]))){
+                if (robot.getCarte().voisinExiste(caseTestee, Direction.values()[i]) && robot.peutAller(robot.getCarte().getVoisin(caseTestee, Direction.values()[i]))){
                   acces = true;
                   ArrayList<Case> chemin = new ArrayList<Case>();
                   chemin = robot.goTo(robot.getCarte().getVoisin(caseTestee, Direction.values()[i]));
@@ -112,15 +112,8 @@ public class ChefPompierEvolue{
         }
       }
       if (incend.getAffecte()) {
-        if (incend.getEauNecessaire() == 0){
-          System.out.println("L'incendie est éteint");
-        }
-        else {
-        System.out.println("L'incendie est affecté");
-        }
         continue;
       } else if(allRobotsOccupied) {
-        System.out.println("Tous les robots sont occupés");
         continue;
       }
       else{
