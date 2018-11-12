@@ -1,5 +1,6 @@
 package donnees;
 import java.util.*;
+import java.lang.IndexOutOfBoundsException;
 
 /**
   * Classe representant la carte contenant toutes les cases.
@@ -68,12 +69,13 @@ public int getTailleCases(){
     * @param col Colonne a laquelle on veut recuperer la case
     * @return Renvoie la case situe a [lig, col]
     */
-public Case getCase(int lig, int col){
-    if (lig < this.nbLignes && col < this.nbColonnes) {
+  public Case getCase(int lig, int col){
+    try {
       return this.tableauCases[lig][col];
+    } catch (IndexOutOfBoundsException e){
+      System.out.println("Cela dépasse les dimensions de la carte.");
     }
-    System.out.println("Cela dépasse les dimensions de la carte.");
-    return this.tableauCases[lig][col];
+    return null;
   }
 
   /**
@@ -126,7 +128,6 @@ public Case getCase(int lig, int col){
           return this.tableauCases[src.getLigne() + 1][src.getColonne()];
       }
     }
-    System.out.println("Il n'y a pas de voisin dans cette direction.");
     return this.tableauCases[0][0];
   }
 
