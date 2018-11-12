@@ -21,10 +21,7 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: testInvader testLecture testTp
-
-testInvader:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestInvader.java
+all: testLecture testTp
 
 testLecture:
 	javac -d bin -sourcepath src src/TestLecteurDonnees.java -Xlint:unchecked
@@ -37,14 +34,16 @@ testTp:
 #   > java -classpath bin:bin/gui.jar TestInvader
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeInvader
-exeInvader:
-	java -classpath bin:bin/gui.jar TestInvader
 
 exeLecture:
 	java -classpath bin TestLecteurDonnees cartes/carteSujet.map
 
 exeTp:
 	java -classpath bin:bin/gui.jar TestTp cartes/carteSujet.map
+
+docs:
+	javadoc -d docs -sourcepath ./src/ -subpackages src:donnees simulation creer_date io
+
 
 clean:
 	rm -rf bin/*.class

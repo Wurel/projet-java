@@ -1,5 +1,9 @@
 package donnees;
 
+/**
+  * Enum pour les directions cardinales.
+  */
+
 public enum Direction{
   NORD ("NORD"),
   SUD ("SUD"),

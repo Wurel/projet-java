@@ -4,15 +4,25 @@ import donnees.*;
 import creer_date.*;
 import java.util.*;
 
+/**
+  * Classe modelisant un chef pompier qui donne des ordres aux differents robots suivant la strategie un peu plus evoluee
+  */
+
 public class ChefPompierEvolue{
   Simulateur simul;
   DonneesSimulation donnees;
 
+  /**
+    * @param simul Simulateur dans lequel le chef pompier evolue
+    * @param donnees Donnees de la simulation dont le chef a besoin pour donner ses ordres
+    */
   public ChefPompierEvolue(Simulateur simul, DonneesSimulation donnees){
     this.simul = simul;
     this.donnees = donnees;
   }
-
+  /**
+  * Le chef pompier donne des ordres aux robots afin qu'ils se deplacent, eteignent les incendies et se remplissent 
+    */
   public void ordres(){
     ArrayList<Incendie> incendiesRestantsList = new ArrayList<Incendie>();
     for(Incendie incend : this.donnees.getIncendies()){
@@ -68,7 +78,7 @@ public class ChefPompierEvolue{
           case "Chenilles" : // d'une case d'eau de même que le robot à chenilles
             for (Case caseTestee : casesEau){
               for (int i = 0; i < 4; i++){
-                if (robot.peutAller(robot.getCarte().getVoisin(caseTestee, Direction.values()[i]))){
+                if (robot.getCarte().voisinExiste(caseTestee, Direction.values()[i]) && robot.peutAller(robot.getCarte().getVoisin(caseTestee, Direction.values()[i]))){
                   acces = true;
                   ArrayList<Case> chemin = new ArrayList<Case>();
                   chemin = robot.goTo(robot.getCarte().getVoisin(caseTestee, Direction.values()[i]));
@@ -81,11 +91,6 @@ public class ChefPompierEvolue{
                     caseEau = robot.getCarte().getVoisin(caseTestee, Direction.values()[i]);
                   }
                 }
-                // else if (robot.getPosition() == robot.getCarte().getVoisin(caseTestee, Direction.values()[i])){
-                //   acces = true;
-                //   caseEau = robot.getPosition();
-                //   temps = 0;
-                // }
               }
             }
             break;
@@ -101,7 +106,6 @@ public class ChefPompierEvolue{
           for(int j = 0; j < cheminEau.size(); j++){
             simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(robot, futurCase.getDirectionVoisin(cheminEau.get(j)))).retourneDate()
               , futurCase.getDirectionVoisin(cheminEau.get(j)), robot.getCarte(), robot));
-            System.out.println(futurCase.getDirectionVoisin(cheminEau.get(j)));
             futurCase = cheminEau.get(j);
           }
           simul.ajouteEvenement(new EvenementRemplir(new CreerDateRemplir(robot).retourneDate(), robot.getCarte(), robot));
@@ -118,19 +122,11 @@ public class ChefPompierEvolue{
         }
       }
       if (incend.getAffecte()) {
-        if (incend.getEauNecessaire() == 0){
-          System.out.println("L'incendie est éteint");
-        }
-        else {
-        System.out.println("L'incendie est affecté");
-        }
         continue;
       } else if(allRobotsOccupied) {
-        System.out.println("Tous les robots sont occupés");
         continue;
       }
       else{
-        System.out.println(incend);
         ArrayList<Case> chemin = new ArrayList<Case>();
         long temps = Long.MAX_VALUE;
         Robot currentRobot = this.donnees.getRobots()[0];
@@ -163,7 +159,6 @@ public class ChefPompierEvolue{
           for(int j = 0; j < chemin.size(); j++){
             simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(currentRobot, futurCase.getDirectionVoisin(chemin.get(j)))).retourneDate()
               , futurCase.getDirectionVoisin(chemin.get(j)), currentRobot.getCarte(), currentRobot));
-            System.out.println(futurCase.getDirectionVoisin(chemin.get(j)));
             futurCase = chemin.get(j);
           }
 

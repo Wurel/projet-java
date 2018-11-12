@@ -112,17 +112,8 @@ class Jeu implements Simulable{
       System.out.println(this.simul.getDate());
     }
     else{
-      System.out.println("Tous les incendies ont été éteints");
-      Scanner lectClavier = new Scanner(System.in);
-      while (true) {
-          System.out.println("Arrêter le programme ?"); // (oui pour arrêter)
-          String rep = lectClavier.nextLine();
-          if (rep.equals("oui")){
-            System.exit (0);
-          }
-      }
+      this.simul.incrementeDate();
     }
-
   }
 
 
@@ -157,11 +148,6 @@ class Jeu implements Simulable{
         new ImageElement(50 + this.donnees.getCarte().getCase(i,j).getColonne()*this.nombrePixels -this.nombrePixels/2,50 +
         this.donnees.getCarte().getCase(i, j).getLigne()*this.nombrePixels -this.nombrePixels/2,
                       this.donnees.getCarte().getCase(i,j).getImage() ,this.nombrePixels, this.nombrePixels, null ) );
-
-        // gui.addGraphicalElement(new Rectangle(60+j*this.nombrePixels, 40+i*this.nombrePixels,
-        //   Color.decode(this.donnees.getCarte().getCase(i,j).getCouleur()),
-        //   Color.decode(this.donnees.getCarte().getCase(i,j).getCouleur()),
-        //    this.nombrePixels));
       }
 
     }
@@ -174,15 +160,6 @@ class Jeu implements Simulable{
         incend.getLigne()*this.nombrePixels -this.nombrePixels/2,
                       "src/image/feu.gif" ,this.nombrePixels, this.nombrePixels, null ) );
 
-
-        // gui.addGraphicalElement(new Rectangle(60+incend.getColonne()*this.nombrePixels,
-        //  40+incend.getLigne()*this.nombrePixels,
-        //   Color.decode("#FE1B00"),
-        //   Color.decode("#FE1B00"),
-        //    this.nombrePixels/2));
-        // gui.addGraphicalElement(new Text(60+incend.getColonne()*this.nombrePixels,
-        //  40+incend.getLigne()*this.nombrePixels, Color.decode("#A89874"),
-        //  Integer.toString(incend.getEauNecessaire())));
          gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+200,
          compteur*20 + 40,
           Color.decode("#FFFFFF"),
@@ -194,25 +171,11 @@ class Jeu implements Simulable{
 
     int compteur_robot = compteur;
     for (Robot robot : this.donnees.getRobots() ) {
-      // gui.addGraphicalElement(new Rectangle(60+robot.getPosition().getColonne()*this.nombrePixels,
-      //  40+robot.getPosition().getLigne()*this.nombrePixels,
-      //   Color.decode("#A22C29"),
-      //   Color.decode("#A22C29"),
-      //    this.nombrePixels/2));
       gui.addGraphicalElement(
       new ImageElement(50 + robot.getPosition().getColonne()*this.nombrePixels -this.nombrePixels/2,50 +
       robot.getPosition().getLigne()*this.nombrePixels -this.nombrePixels/2,
       "src/image/" + robot.getType() + ".png" ,(int)(this.nombrePixels), (int)(this.nombrePixels), null ) );
 
-
-
-
-    //   gui.addGraphicalElement(new Text(60+robot.getPosition().getColonne()*this.nombrePixels,
-    //    40+robot.getPosition().getLigne()*this.nombrePixels, Color.decode("#A89874"),
-    //    robot.getType()));
-    //  gui.addGraphicalElement(new Text(60+robot.getPosition().getColonne()*this.nombrePixels,
-    //   60+robot.getPosition().getLigne()*this.nombrePixels, Color.decode("#A89874"),
-    //   Integer.toString(robot.getReservoirEau())));
       gui.addGraphicalElement(new Text( this.donnees.getCarte().getNbLignes()*this.nombrePixels+240,
        compteur_robot*20 + 40,
         Color.decode("#FFFFFF"),
