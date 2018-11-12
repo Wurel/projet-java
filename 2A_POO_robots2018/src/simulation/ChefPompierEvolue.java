@@ -81,11 +81,6 @@ public class ChefPompierEvolue{
                     caseEau = robot.getCarte().getVoisin(caseTestee, Direction.values()[i]);
                   }
                 }
-                // else if (robot.getPosition() == robot.getCarte().getVoisin(caseTestee, Direction.values()[i])){
-                //   acces = true;
-                //   caseEau = robot.getPosition();
-                //   temps = 0;
-                // }
               }
             }
             break;
@@ -101,7 +96,6 @@ public class ChefPompierEvolue{
           for(int j = 0; j < cheminEau.size(); j++){
             simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(robot, futurCase.getDirectionVoisin(cheminEau.get(j)))).retourneDate()
               , futurCase.getDirectionVoisin(cheminEau.get(j)), robot.getCarte(), robot));
-            System.out.println(futurCase.getDirectionVoisin(cheminEau.get(j)));
             futurCase = cheminEau.get(j);
           }
           simul.ajouteEvenement(new EvenementRemplir(new CreerDateRemplir(robot).retourneDate(), robot.getCarte(), robot));
@@ -130,7 +124,6 @@ public class ChefPompierEvolue{
         continue;
       }
       else{
-        System.out.println(incend);
         ArrayList<Case> chemin = new ArrayList<Case>();
         long temps = Long.MAX_VALUE;
         Robot currentRobot = this.donnees.getRobots()[0];
@@ -163,7 +156,6 @@ public class ChefPompierEvolue{
           for(int j = 0; j < chemin.size(); j++){
             simul.ajouteEvenement(new EvenementDeplacement((new CreerDateDeplacement(currentRobot, futurCase.getDirectionVoisin(chemin.get(j)))).retourneDate()
               , futurCase.getDirectionVoisin(chemin.get(j)), currentRobot.getCarte(), currentRobot));
-            System.out.println(futurCase.getDirectionVoisin(chemin.get(j)));
             futurCase = chemin.get(j);
           }
 

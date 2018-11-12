@@ -1,5 +1,6 @@
 package donnees;
 import java.util.*;
+import java.lang.IndexOutOfBoundsException;
 
 public class Carte{
   private int tailleCases;
@@ -37,11 +38,12 @@ public class Carte{
   }
 
   public Case getCase(int lig, int col){
-    if (lig < this.nbLignes && col < this.nbColonnes) {
+    try {
       return this.tableauCases[lig][col];
+    } catch (IndexOutOfBoundsException e){
+      System.out.println("Cela dépasse les dimensions de la carte.");
     }
-    System.out.println("Cela dépasse les dimensions de la carte.");
-    return this.tableauCases[lig][col];
+    return null;
   }
 
   public boolean voisinExiste(Case src, Direction dir){
@@ -84,7 +86,6 @@ public class Carte{
           return this.tableauCases[src.getLigne() + 1][src.getColonne()];
       }
     }
-    System.out.println("Il n'y a pas de voisin dans cette direction.");
     return this.tableauCases[0][0];
   }
 
