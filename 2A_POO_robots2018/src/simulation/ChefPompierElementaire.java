@@ -4,15 +4,25 @@ import donnees.*;
 import creer_date.*;
 import java.util.*;
 
+/**
+  * Classe modelisant un chef pompier qui donne des ordres aux differents robots suivant la strategie elementaire
+  */
 public class ChefPompierElementaire{
   Simulateur simul;
   DonneesSimulation donnees;
 
+  /**
+    * @param simul Simulateur dans lequel le chef pompier evolue
+    * @param donnees Donnees de la simulation dont le chef a besoin pour donner ses ordres
+    */
   public ChefPompierElementaire(Simulateur simul, DonneesSimulation donnees){
     this.simul = simul;
     this.donnees = donnees;
   }
 
+  /**
+    * Le chef pompier donne des ordres aux robots afin qu'ils se deplacent et eteignent les incendies
+    */
   public void ordres(){
     for (Robot robot : this.donnees.getRobots()) {
       if (robot.getReservoirEau() == 0 && !(robot.getType().equals("Pattes"))){

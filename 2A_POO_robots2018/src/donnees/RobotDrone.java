@@ -1,4 +1,7 @@
 package donnees;
+/**
+  * Classe representant les robots drones.
+  */
 
 public class RobotDrone extends Robot {
 

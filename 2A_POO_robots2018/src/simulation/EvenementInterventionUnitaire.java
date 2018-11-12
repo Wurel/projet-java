@@ -6,11 +6,19 @@ import donnees.Case;
 import donnees.DonneesSimulation;
 import donnees.Incendie;
 
+/**
+  * Classe representant un Evenement ou le robot intervient sur un incendie
+  */
 public class EvenementInterventionUnitaire extends Evenement {
 
   private Robot robot;
   private Incendie incendie;
 
+  /**
+    * @param date Date de la fin du deplacement
+    * @param incend Incendie sur lequel le robot intervient
+    * @param robot C'est le robot qui intervient
+    */
 
   public EvenementInterventionUnitaire(long date, Incendie incend, Robot robot){
     super(date);

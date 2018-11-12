@@ -4,15 +4,25 @@ import donnees.*;
 import creer_date.*;
 import java.util.*;
 
+/**
+  * Classe modelisant un chef pompier qui donne des ordres aux differents robots suivant la strategie un peu plus evoluee
+  */
+
 public class ChefPompierEvolue{
   Simulateur simul;
   DonneesSimulation donnees;
 
+  /**
+    * @param simul Simulateur dans lequel le chef pompier evolue
+    * @param donnees Donnees de la simulation dont le chef a besoin pour donner ses ordres
+    */
   public ChefPompierEvolue(Simulateur simul, DonneesSimulation donnees){
     this.simul = simul;
     this.donnees = donnees;
   }
-
+  /**
+  * Le chef pompier donne des ordres aux robots afin qu'ils se deplacent, eteignent les incendies et se remplissent 
+    */
   public void ordres(){
     ArrayList<Incendie> incendiesRestantsList = new ArrayList<Incendie>();
     for(Incendie incend : this.donnees.getIncendies()){

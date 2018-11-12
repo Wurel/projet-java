@@ -3,12 +3,21 @@ package simulation;
 import creer_date.*;
 import donnees.*;
 
+/**
+  * Classe representant un Evenement ou le robot se deplace
+  */
 public class EvenementDeplacement extends Evenement{
 
   private Direction dir;
   private Carte carte;
   private Robot robot;
 
+  /**
+    * @param date Date de la fin du deplacement
+    * @param dir Direction du deplacement
+    * @param carte Carte sur laquelle le robot se deplace
+    * @param robot C'est le robot qui se deplace
+    */
   public EvenementDeplacement(long date, Direction dir, Carte carte, Robot robot){
     super(date);
     this.dir = dir;
