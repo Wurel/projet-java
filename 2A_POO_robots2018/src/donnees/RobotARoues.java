@@ -1,4 +1,7 @@
 package donnees;
+/**
+  * Classe representant les robots a roues.
+  */
 
 public class RobotARoues extends Robot {
 

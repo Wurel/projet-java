@@ -1,5 +1,7 @@
 package donnees;
-
+/**
+  * Classe representant les robots a chenilles.
+  */
 public class RobotAChenilles extends Robot {
 
   public RobotAChenilles(Carte carte, int ligne, int colonne){
