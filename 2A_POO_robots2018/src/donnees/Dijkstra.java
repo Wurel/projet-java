@@ -28,9 +28,9 @@ public class Dijkstra{
   }
 
   /**
-  Done : true si le sommet est intégré au sous-graphe de Dijkstra
+  @param done : true si le sommet est intégré au sous-graphe de Dijkstra
          false sinon (et alors son temps d'accès peut encore changer, ainsi que son precedent)
-  **/
+  */
   public void setDone(boolean done){
     this.done = done;
   }
