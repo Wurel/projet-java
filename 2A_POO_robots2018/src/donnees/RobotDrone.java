@@ -1,5 +1,7 @@
 package donnees;
 
+import java.util.*;
+
 public class RobotDrone extends Robot {
 
   public RobotDrone(Carte carte, int ligne, int colonne){
@@ -22,10 +24,38 @@ public class RobotDrone extends Robot {
     return "Drone";
   }
 
-
   @Override
   public boolean peutSeDeplacer(Case nvCase){
     return true;
+  }
+
+  public ArrayList<Incendie> getIncendiesProchesEau(ArrayList<Incendie> incendies){
+    ArrayList<Incendie> incendiesProximiteEau = new ArrayList<Incendie>();
+    ArrayList<Long> tempsIncendiesEau = new ArrayList<Long>();
+    for (Incendie incend : incendies){
+      RobotDrone robot = new RobotDrone(this.getCarte(), incend.getPosition().getLigne(), incend.getPosition().getColonne(), this.getVitesse(incend.getPosition().getNature()));
+      long temps = Long.MAX_VALUE;
+      for (Case caseEau : this.getCarte().getCasesEau()){
+        if (this.peutAller(caseEau)){
+          ArrayList<Case> chemin = new ArrayList<Case>();
+          chemin = robot.goTo(caseEau);
+          long nvTemps = robot.timeToDo(chemin);
+          if (nvTemps < temps) {
+            temps = nvTemps;
+          }
+        }
+      }
+      tempsIncendiesEau.add(temps);
+    }
+    Long tempsIncendiesEauTab[] = new Long[tempsIncendiesEau.size()];
+    tempsIncendiesEauTab = tempsIncendiesEau.toArray(tempsIncendiesEauTab);
+    Arrays.sort(tempsIncendiesEauTab);
+    for (int i = 0; i < incendies.size(); i++){
+      int index = tempsIncendiesEau.indexOf(tempsIncendiesEauTab[i]);
+      incendiesProximiteEau.add(0, incendies.get(index));
+      tempsIncendiesEau.set(index, Long.MAX_VALUE);
+    }
+    return incendiesProximiteEau;
   }
 
   @Override

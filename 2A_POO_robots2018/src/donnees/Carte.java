@@ -84,7 +84,7 @@ public class Carte{
           return this.tableauCases[src.getLigne() + 1][src.getColonne()];
       }
     }
-    System.out.println("Il n'y a pas de voisin dans cette direction.");
+    //System.out.println("Il n'y a pas de voisin dans cette direction.");
     return this.tableauCases[0][0];
   }
 

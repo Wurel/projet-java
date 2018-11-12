@@ -20,6 +20,26 @@ public class ChefPompierEvolue{
         incendiesRestantsList.add(incend); // On itère seulement sur les incendies allumés
       }
     }
+    Incendie incendiesRestants[] = new Incendie[incendiesRestantsList.size()];
+    incendiesRestants = incendiesRestantsList.toArray(incendiesRestants);
+    if (this.donnees.getRobots().length > incendiesRestants.length){
+      for (Incendie incend : incendiesRestants){ // Permet des affectations multiples
+        incend.setAffecte(false); // quand il y a plus de robots que d'incendies
+      }
+    }
+    for (Incendie incend : this.donnees.getIncendies()){
+      ArrayList<Robot> robotsAffectes = new ArrayList<Robot>();
+      for (Robot robot : this.donnees.getRobots()){
+        if (robot.getPosition().equals(incend.getPosition())){
+          robotsAffectes.add(robot);
+        }
+      }
+      if (robotsAffectes.size() > 1 && incend.getEauNecessaire() == 0){
+        for(Robot robot : robotsAffectes){ // Permet de faire repartir le robot
+          robot.setDate(this.simul.getDate()); // S'il reste des événements intervention
+        } // Alors que l'eau nécessaire de l'incendie est à 0
+      }
+    }
     if (incendiesRestantsList.size() == 0){
       long dateMax = this.simul.getDate();
       for (Evenement event : this.simul.getEvenements()){
@@ -29,13 +49,6 @@ public class ChefPompierEvolue{
       }
       while(this.simul.getDate() != dateMax + 1){ // Permet de sauter les événements inutiles
         this.simul.incrementeDate(); // dûs aux affectations multiples
-      }
-    }
-    Incendie incendiesRestants[] = new Incendie[incendiesRestantsList.size()];
-    incendiesRestants = incendiesRestantsList.toArray(incendiesRestants);
-    if (this.donnees.getRobots().length > incendiesRestants.length){
-      for (Incendie incend : incendiesRestants){ // Permet des affectations multiples
-        incend.setAffecte(false); // quand il y a plus de robots que d'incendies
       }
     }
     for (Robot robot : this.donnees.getRobots()) {
@@ -81,11 +94,6 @@ public class ChefPompierEvolue{
                     caseEau = robot.getCarte().getVoisin(caseTestee, Direction.values()[i]);
                   }
                 }
-                // else if (robot.getPosition() == robot.getCarte().getVoisin(caseTestee, Direction.values()[i])){
-                //   acces = true;
-                //   caseEau = robot.getPosition();
-                //   temps = 0;
-                // }
               }
             }
             break;
@@ -110,7 +118,32 @@ public class ChefPompierEvolue{
         }
       }
     }
+    boolean incendieLePlusEloigneExiste = false;
+    if (this.donnees.getCarte().getCasesEau().size() != 0) {
+      for (Incendie incend : incendiesRestants) {
+        boolean incendieLePlusEloigne = true;
+        for (Robot robot : this.donnees.getRobots()) {
+          if (robot.getType() != "Pattes"){
+            if (!(incend.equals(robot.getIncendiesProchesEau(incendiesRestantsList).get(0)))){
+              incendieLePlusEloigne = false;
+            }
+          }
+        }
+        if (incendieLePlusEloigne){
+          incendieLePlusEloigneExiste = true;
+        }
+      }
+    }
+
     for (Incendie incend : incendiesRestants) {
+      boolean incendieLePlusEloigne = true;
+      for (Robot robot : this.donnees.getRobots()) {
+        if (robot.getType() != "Pattes"){
+          if (!(incend.equals(robot.getIncendiesProchesEau(incendiesRestantsList).get(0)))){
+            incendieLePlusEloigne = false;
+          }
+        }
+      }
       boolean allRobotsOccupied = true;
       for (Robot robot : this.donnees.getRobots()) {
         if (!robot.getOccupe()){
@@ -135,6 +168,15 @@ public class ChefPompierEvolue{
         long temps = Long.MAX_VALUE;
         Robot currentRobot = this.donnees.getRobots()[0];
         for (Robot robot : this.donnees.getRobots()) {
+          if (incendieLePlusEloigneExiste && (incendiesRestants.length > 1) && robot.getType() == "Pattes" && (!(robot.getOccupe()))){
+            if (incendieLePlusEloigne){
+              incend.setAffecte(true);
+              currentRobot = robot;
+              chemin = robot.goTo(incend.getPosition());
+              break;
+            }
+            continue;
+          }
           if (robot.getOccupe() || (robot.getVitesse(robot.getPosition().getNature()) == 0) || (!(robot.peutAller(incend.getPosition()))) || (this.simul.getDate() < robot.getDate()) || (robot.getReservoirEau() == 0 && !(robot.getType().equals("Pattes")) )) {
             continue;
           }

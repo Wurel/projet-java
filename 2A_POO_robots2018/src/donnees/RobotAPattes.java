@@ -1,5 +1,7 @@
 package donnees;
 
+import java.util.*;
+
 public class RobotAPattes extends Robot {
 
   public RobotAPattes(Carte carte, int ligne, int colonne){
@@ -29,6 +31,12 @@ public class RobotAPattes extends Robot {
       default :
         return true;
     }
+  }
+
+  public ArrayList<Incendie> getIncendiesProchesEau(ArrayList<Incendie> incendies){
+    // utilise de la poudre
+    // ne se remplit jamais
+    return null;
   }
 
   public void setPosition(Case nvCase){

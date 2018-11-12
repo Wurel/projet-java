@@ -10,6 +10,10 @@ public abstract class Robot{
   private long date;
   private boolean occupe;
 
+  /**
+    * retourne la carte
+  @return
+  */
   public Robot(Carte carte, int ligne, int colonne){
     this.carte = carte;
     this.position = carte.getCase(ligne, colonne);
@@ -39,6 +43,9 @@ public abstract class Robot{
     return this.position;
   }
 
+  /**
+  set la @see position du robot a @param nvCase
+  */
   public void setPosition(Case nvCase){
     this.position = nvCase;
   }
@@ -137,7 +144,7 @@ public abstract class Robot{
     return ltime;
   }
 
-
+  public abstract ArrayList<Incendie> getIncendiesProchesEau(ArrayList<Incendie> incendies);
 
   public void deverserEau(int vol){
     this.setReservoirEau(this.getReservoirEau() - vol);
@@ -145,7 +152,7 @@ public abstract class Robot{
 
   public abstract void remplirReservoir();
 
-  public abstract  String getType();
+  public abstract String getType();
 
   public abstract boolean peutSeDeplacer(Case nvCase);
 

@@ -50,6 +50,19 @@ public class Incendie{
     this.affecte = affecte;
   }
 
+  public boolean equals(Incendie otherIncend){
+    if (!(this.position.equals(otherIncend.getPosition()))) {
+      return false;
+    }
+    else if (this.eauNecessaire != otherIncend.getEauNecessaire()){
+      return false;
+    }
+    else if (this.affecte != otherIncend.getAffecte()){
+      return false;
+    }
+    return true;
+  }
+
   @Override
   public String toString(){
     return "Incendie : [" + this.getLigne() + ", " + this.getColonne() + "]" + " eau necessaire : " + this.eauNecessaire + "\n";
